@@ -46,7 +46,7 @@ export async function POST(req: Request) {
 
     const resendApiKey = process.env.RESEND_API_KEY;
     const recipientEmail =
-      process.env.CONTACT_EMAIL || "yacsilem.2009@gmail.com";
+      process.env.CONTACT_EMAIL || "yacine.silem.dev@gmail.com";
 
     if (!resendApiKey) {
       console.warn("RESEND_API_KEY is not defined. Email logged locally in fallback mode.");
