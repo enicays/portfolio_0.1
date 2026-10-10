@@ -214,7 +214,7 @@ export const portfolioData: PortfolioData = {
       role: "Freelance Full-Stack Developer",
       company: "Self-Employed / Freelance",
       location: "Remote / Worldwide",
-      period: "2024 - Present",
+      period: "2024 – Present",
       isCurrent: true,
       type: "Freelance",
       description: "Delivering custom full-stack web applications, e-commerce stores, high-converting landing pages, and modern showcase websites for clients worldwide.",
@@ -227,7 +227,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: "exp-2",
-      role: "Software Developer — Graduation Project",
+      role: "Software Developer – Graduation Project",
       company: "Algeria Post",
       location: "Algiers, Algeria",
       period: "2024",
@@ -237,7 +237,7 @@ export const portfolioData: PortfolioData = {
       achievements: [
         "Architected a comprehensive HR dashboard featuring employee management, department directories, and administrative controls.",
         "Implemented an automated leave and absence tracking system to replace manual record-keeping with seamless digital approvals.",
-        "Built reliable backend REST APIs and database schemas ensuring secure data persistence, role-based access, and fast query execution.",
+        "Built reliable backend REST APIs and database schemas, ensuring secure data persistence, role-based access, and fast query execution.",
       ],
       techStack: ["React", "Node.js", "Express", "PostgreSQL", "JavaScript", "REST APIs", "Tailwind CSS"],
     },
