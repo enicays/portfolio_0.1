@@ -3,6 +3,7 @@
 import React from "react";
 import { portfolioData } from "@/data/portfolioData";
 import { ArrowDown, ArrowUpRight, Terminal } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Hero() {
   const { personal, marqueeItems } = portfolioData;
@@ -15,7 +16,12 @@ export default function Hero() {
 
       <div className="w-full relative z-10">
         {/* Massive Display Role Heading - Put First */}
-        <div className="mb-6 lg:mb-8 select-none">
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.65, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="mb-6 lg:mb-8 select-none"
+        >
           <h1 className="font-display font-black text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] tracking-tight leading-[0.9] uppercase">
             <span className="block text-[#FAF7F3] drop-shadow-sm">
               {personal.displayTitleLine1}
@@ -24,10 +30,15 @@ export default function Hero() {
               {personal.displayTitleLine2}
             </span>
           </h1>
-        </div>
+        </motion.div>
 
         {/* Top Badges */}
-        <div className="flex flex-wrap items-center gap-3 mb-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="flex flex-wrap items-center gap-3 mb-6"
+        >
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1A1817] border border-white/10 text-xs text-[#FAF7F3] shadow-md">
             <span className="flex h-2 w-2 rounded-full bg-[#C5FF41] animate-pulse" />
             <span className="font-mono text-[11px] text-[#998F8F]">STATUS:</span>
@@ -38,20 +49,30 @@ export default function Hero() {
             <Terminal className="w-3.5 h-3.5 text-[#C5FF41]" />
             <span>{personal.location}</span>
           </div>
-        </div>
+        </motion.div>
 
         {/* Name & Headline Introduction */}
-        <div className="max-w-4xl mb-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.18, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="max-w-4xl mb-4"
+        >
           <p className="text-sm sm:text-base font-mono tracking-widest text-[#C5FF41] uppercase mb-2">
             Hey there, I am {personal.name}
           </p>
           <p className="text-xl sm:text-2xl lg:text-3xl font-normal text-[#998F8F] leading-relaxed">
             {personal.tagline}
           </p>
-        </div>
+        </motion.div>
 
         {/* Bio paragraph & Action Buttons */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-16 lg:mb-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.25, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-16 lg:mb-20"
+        >
           <div className="lg:col-span-7">
             <p className="text-base sm:text-lg text-[#998F8F] font-light leading-relaxed max-w-2xl">
               {personal.bio}
@@ -83,13 +104,20 @@ export default function Hero() {
               <ArrowUpRight className="w-4 h-4 text-[#998F8F] group-hover:text-[#C5FF41] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
             </a>
           </div>
-        </div>
+        </motion.div>
 
         {/* Metrics Bento Counters Row */}
-        <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:gap-6 max-w-md sm:max-w-lg pt-6 border-t border-white/[0.08]">
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="grid grid-cols-2 gap-3 sm:gap-4 lg:gap-6 max-w-md sm:max-w-lg pt-6 border-t border-white/[0.08]"
+        >
           {personal.stats.map((stat, idx) => (
-            <div
+            <motion.div
               key={idx}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
               className="group p-5 sm:p-6 rounded-2xl bg-[#181716]/80 border border-white/[0.06] hover:border-[#C5FF41]/40 transition-all duration-300 hover:bg-[#1C1A19] relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 w-24 h-24 bg-[#C5FF41]/[0.02] rounded-full blur-xl group-hover:bg-[#C5FF41]/[0.06] transition-colors" />
@@ -102,9 +130,9 @@ export default function Hero() {
               <div className="text-[10px] sm:text-[11px] font-mono tracking-wider text-[#998F8F] uppercase mt-0.5">
                 {stat.sublabel}
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       {/* Infinite Marquee Ticker */}

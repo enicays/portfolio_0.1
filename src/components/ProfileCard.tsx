@@ -9,13 +9,19 @@ import {
   InstagramIcon,
   YoutubeIcon,
 } from "./Icons";
+import { motion } from "framer-motion";
 
 export default function ProfileCard() {
   const { personal } = portfolioData;
 
   return (
     <aside className="w-full max-w-[340px] mx-auto select-none">
-      <div className="relative w-full rounded-[32px] bg-white text-[#151312] p-5 sm:p-6 shadow-2xl shadow-black/60 border border-white/10 overflow-hidden flex flex-col items-center">
+      <motion.div
+        initial={{ opacity: 0, y: 25, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
+        className="relative w-full rounded-[32px] bg-white text-[#151312] p-5 sm:p-6 shadow-2xl shadow-black/60 border border-white/10 overflow-hidden flex flex-col items-center"
+      >
         {/* Profile Picture Container */}
         <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden bg-black shadow-md">
           <img
@@ -99,7 +105,7 @@ export default function ProfileCard() {
             <YoutubeIcon className="w-5 h-5" />
           </a>
         </div>
-      </div>
+      </motion.div>
     </aside>
   );
 }

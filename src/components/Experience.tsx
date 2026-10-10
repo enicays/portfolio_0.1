@@ -3,6 +3,7 @@
 import React from "react";
 import { portfolioData } from "@/data/portfolioData";
 import { Briefcase, Calendar, MapPin, CheckCircle2 } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Experience() {
   const { experience } = portfolioData;
@@ -11,7 +12,13 @@ export default function Experience() {
     <section id="experience" className="py-14 lg:py-20 relative border-t border-white/[0.06]">
       <div className="w-full">
         {/* Section Heading */}
-        <div className="max-w-2xl mb-12 sm:mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.65, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="max-w-2xl mb-12 sm:mb-16"
+        >
           <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-[#C5FF41] uppercase mb-3">
             <Briefcase className="w-3.5 h-3.5" />
             <span>CAREER PATH</span>
@@ -22,13 +29,22 @@ export default function Experience() {
           <p className="text-sm sm:text-base text-[#998F8F] mt-4 font-light leading-relaxed">
             Practical experience delivering custom web applications, e-commerce stores, and enterprise management software.
           </p>
-        </div>
+        </motion.div>
 
         {/* Experience Timeline Cards */}
         <div className="space-y-6">
-          {experience.map((item) => (
-            <div
+          {experience.map((item, idx) => (
+            <motion.div
               key={item.id}
+              initial={{ opacity: 0, y: 35 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{
+                duration: 0.6,
+                delay: idx * 0.15,
+                ease: [0.21, 0.47, 0.32, 0.98],
+              }}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
               className="group p-6 sm:p-8 rounded-3xl bg-[#181716]/90 border border-white/[0.08] hover:border-[#C5FF41]/40 transition-all duration-300 hover:bg-[#1C1A19]"
             >
               <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-4 mb-6">
@@ -91,7 +107,7 @@ export default function Experience() {
                   </span>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

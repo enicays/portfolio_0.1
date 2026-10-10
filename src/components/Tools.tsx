@@ -12,6 +12,7 @@ import {
   FigmaLogo,
   GithubLogo,
 } from "./Icons";
+import { motion } from "framer-motion";
 
 export default function Tools() {
   const { tools } = portfolioData;
@@ -43,7 +44,13 @@ export default function Tools() {
     <section id="tools" className="py-14 lg:py-20 relative border-t border-white/[0.06]">
       <div className="w-full">
         {/* Large Sawad Display Heading */}
-        <div className="mb-14 sm:mb-20 select-none">
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="mb-14 sm:mb-20 select-none"
+        >
           <h2 className="font-display font-black text-6xl sm:text-7xl md:text-8xl lg:text-[7.5rem] tracking-tight leading-[0.88] uppercase">
             <span className="block text-[#FAF7F3] drop-shadow-sm">
               PREMIUM
@@ -52,13 +59,22 @@ export default function Tools() {
               TOOLS
             </span>
           </h2>
-        </div>
+        </motion.div>
 
         {/* 2-Column Client-Friendly Tools Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 lg:gap-x-24 gap-y-9 sm:gap-y-12 max-w-4xl">
-          {tools.map((tool) => (
-            <div
+          {tools.map((tool, idx) => (
+            <motion.div
               key={tool.name}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{
+                duration: 0.5,
+                delay: idx * 0.08,
+                ease: [0.21, 0.47, 0.32, 0.98],
+              }}
+              whileHover={{ x: 6, transition: { duration: 0.2 } }}
               className="group flex items-center gap-4 sm:gap-5 cursor-default transition-all duration-200"
             >
               {/* White rounded squircle icon container */}
@@ -75,7 +91,7 @@ export default function Tools() {
                   {tool.subtitle}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

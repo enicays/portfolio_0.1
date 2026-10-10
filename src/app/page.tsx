@@ -7,10 +7,12 @@ import Tools from "@/components/Tools";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ScrollManager from "@/components/ScrollManager";
+import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#121110] text-[#FAF7F3] selection:bg-[#C5FF41] selection:text-[#121110]">
+    <SmoothScrollProvider>
+      <main className="min-h-screen bg-[#121110] text-[#FAF7F3] selection:bg-[#C5FF41] selection:text-[#121110]">
       {/* Ensures page always opens at top without jumping to anchors on entry or reload */}
       <ScrollManager />
 
@@ -38,5 +40,6 @@ export default function Home() {
 
       <Footer />
     </main>
+    </SmoothScrollProvider>
   );
 }

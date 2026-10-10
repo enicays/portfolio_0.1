@@ -5,6 +5,7 @@ import { portfolioData, Project } from "@/data/portfolioData";
 import ProjectModal from "./ProjectModal";
 import { ArrowUpRight, ExternalLink, Sparkles, Layers } from "lucide-react";
 import { GithubIcon } from "./Icons";
+import { motion } from "framer-motion";
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -14,7 +15,13 @@ export default function Projects() {
     <section id="projects" className="py-14 lg:py-20 relative">
       <div className="w-full">
         {/* Section Heading */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.65, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6"
+        >
           <div>
             <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-[#C5FF41] uppercase mb-3">
               <Sparkles className="w-3.5 h-3.5" />
@@ -27,13 +34,22 @@ export default function Projects() {
           <p className="text-sm sm:text-base text-[#998F8F] max-w-md font-light leading-relaxed">
             Engineered with a focus on scalable distributed backends, strict type safety, and polished, responsive frontend interfaces.
           </p>
-        </div>
+        </motion.div>
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
           {projects.map((project, idx) => (
-            <div
+            <motion.div
               key={project.id}
+              initial={{ opacity: 0, y: 35 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{
+                duration: 0.6,
+                delay: idx * 0.12,
+                ease: [0.21, 0.47, 0.32, 0.98],
+              }}
+              whileHover={{ y: -6, transition: { duration: 0.25 } }}
               className="group relative flex flex-col justify-between p-6 sm:p-8 rounded-3xl bg-[#181716]/90 border border-white/[0.08] hover:border-[#C5FF41]/40 transition-all duration-300 hover:bg-[#1C1A19] hover:shadow-[0_10px_35px_rgba(0,0,0,0.4)]"
             >
               {/* Card Top Meta */}
@@ -156,7 +172,7 @@ export default function Projects() {
                   )}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

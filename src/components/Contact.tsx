@@ -10,6 +10,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import InquiryForm from "./InquiryForm";
+import { motion } from "framer-motion";
 
 export default function Contact() {
   const { personal } = portfolioData;
@@ -26,7 +27,13 @@ export default function Contact() {
       <div className="w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           {/* Left Column: Direct Info */}
-          <div className="lg:col-span-5 flex flex-col justify-between">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.65, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="lg:col-span-5 flex flex-col justify-between"
+          >
             <div>
               <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-[#C5FF41] uppercase mb-3">
                 <Mail className="w-3.5 h-3.5" />
@@ -100,12 +107,18 @@ export default function Contact() {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Multi-Step Inquiry Form */}
-          <div className="lg:col-span-7 flex justify-center lg:justify-end">
+          <motion.div
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.65, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="lg:col-span-7 flex justify-center lg:justify-end"
+          >
             <InquiryForm />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
