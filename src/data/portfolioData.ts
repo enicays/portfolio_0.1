@@ -84,7 +84,7 @@ export const portfolioData: PortfolioData = {
     location: "Worldwide",
     email: "yacine.silem.dev@gmail.com",
     status: "Available",
-    avatarUrl: "/profile.jpg",
+    avatarUrl: "/profile.webp",
     stats: [
       {
         value: "+2",

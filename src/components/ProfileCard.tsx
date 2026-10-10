@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { portfolioData } from "@/data/portfolioData";
 import { Mail } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./Icons";
@@ -23,10 +24,14 @@ export default function ProfileCard() {
       >
         {/* Profile Picture Container */}
         <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden bg-[#EAE3D6] border border-[#D9D1C5]">
-          <img
-            src={personal.avatarUrl || "/profile.jpg"}
+          <Image
+            src={personal.avatarUrl || "/profile.webp"}
             alt={personal.name}
-            className="w-full h-full object-cover object-top rounded-2xl transition-transform duration-500 hover:scale-105"
+            fill
+            priority
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 340px, 300px"
+            quality={85}
+            className="object-cover object-top rounded-2xl transition-transform duration-500 hover:scale-105"
           />
         </div>
 
