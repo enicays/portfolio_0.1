@@ -2,110 +2,87 @@
 
 import React from "react";
 import { portfolioData } from "@/data/portfolioData";
-import { Briefcase, Calendar, MapPin, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Experience() {
   const { experience } = portfolioData;
 
   return (
-    <section id="experience" className="py-14 lg:py-20 relative border-t border-white/[0.06]">
+    <section id="experience" className="py-14 lg:py-20 relative scroll-mt-28 border-t border-[#D9D1C5]">
       <div className="w-full">
-        {/* Section Heading */}
+        {/* Section Heading (Plain, unformulaic typography - no eyebrow, no two-tone) */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.65, ease: [0.21, 0.47, 0.32, 0.98] }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
           className="max-w-2xl mb-12 sm:mb-16"
         >
-          <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-[#C5FF41] uppercase mb-3">
-            <Briefcase className="w-3.5 h-3.5" />
-            <span>CAREER PATH</span>
-          </div>
-          <h2 className="font-display font-black text-3xl sm:text-5xl lg:text-6xl text-[#FAF7F3] tracking-tight uppercase">
-            WORK <span className="text-[#C5FF41]">EXPERIENCE</span>
+          <h2 className="font-display font-black text-3xl sm:text-5xl lg:text-6xl text-[#1A1614] tracking-tight uppercase">
+            Work Experience
           </h2>
-          <p className="text-sm sm:text-base text-[#998F8F] mt-4 font-light leading-relaxed">
-            Practical experience delivering custom web applications, e-commerce stores, and enterprise management software.
+          <p className="text-sm sm:text-base text-[#6B625A] mt-3 font-normal leading-relaxed">
+            Practical experience delivering production-ready web applications, e-commerce stores, and enterprise management tools.
           </p>
         </motion.div>
 
-        {/* Experience Timeline Cards */}
-        <div className="space-y-6">
+        {/* Editorial Plain List Layout (Varied from bento cards - clean hairline rules & typography) */}
+        <div className="divide-y divide-[#D9D1C5]">
           {experience.map((item, idx) => (
             <motion.div
               key={item.id}
-              initial={{ opacity: 0, y: 35 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: true, margin: "-40px" }}
               transition={{
-                duration: 0.6,
-                delay: idx * 0.15,
+                duration: 0.55,
+                delay: idx * 0.1,
                 ease: [0.21, 0.47, 0.32, 0.98],
               }}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="group p-6 sm:p-8 rounded-3xl bg-[#181716]/90 border border-white/[0.08] hover:border-[#C5FF41]/40 transition-all duration-300 hover:bg-[#1C1A19]"
+              className="py-10 first:pt-0 last:pb-0"
             >
-              <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-4 mb-6">
+              {/* Header row: Role, Company, Period */}
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-4">
                 <div>
-                  <div className="flex flex-wrap items-center gap-3 mb-2">
-                    <h3 className="font-display font-black text-xl sm:text-2xl text-[#FAF7F3] group-hover:text-[#C5FF41] transition-colors">
+                  <div className="flex items-center gap-3">
+                    <h3 className="font-display font-bold text-2xl sm:text-3xl text-[#1A1614] tracking-tight">
                       {item.role}
                     </h3>
                     {item.isCurrent && (
-                      <span className="px-2.5 py-0.5 rounded-full bg-[#C5FF41]/15 text-[#C5FF41] border border-[#C5FF41]/30 text-[10px] font-mono font-bold uppercase tracking-wider">
-                        Current Role
+                      <span className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-[#E8341C] uppercase tracking-wider">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#E8341C]" />
+                        Current
                       </span>
                     )}
                   </div>
-                  <div className="text-base sm:text-lg font-semibold text-[#998F8F]">
-                    {item.company}
+                  <div className="text-base font-medium text-[#6B625A] mt-1">
+                    {item.company} &nbsp;•&nbsp; {item.location}
                   </div>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-[#998F8F]">
-                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.06]">
-                    <Calendar className="w-3.5 h-3.5 text-[#C5FF41]" />
-                    <span>{item.period}</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.06]">
-                    <MapPin className="w-3.5 h-3.5 text-[#998F8F]" />
-                    <span>{item.location}</span>
-                  </div>
+                <div className="text-sm font-mono text-[#6B625A] shrink-0">
+                  {item.period}
                 </div>
               </div>
 
               {/* Description */}
-              <p className="text-sm text-[#FAF7F3]/90 leading-relaxed font-light mb-6">
+              <p className="text-base text-[#1A1614] leading-relaxed mb-5 max-w-3xl">
                 {item.description}
               </p>
 
-              {/* Achievements bullet list */}
-              <div className="space-y-2.5 mb-6">
+              {/* Achievements as clean editorial typographic list (No green checkmark icons) */}
+              <ul className="space-y-2 mb-6 max-w-3xl list-disc list-inside text-sm text-[#6B625A] leading-relaxed marker:text-[#E8341C]">
                 {item.achievements.map((ach, aIdx) => (
-                  <div key={aIdx} className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-[#C5FF41] shrink-0 mt-0.5" />
-                    <span className="text-xs sm:text-sm text-[#998F8F] leading-relaxed">
-                      {ach}
-                    </span>
-                  </div>
+                  <li key={aIdx} className="pl-1">
+                    <span className="text-[#6B625A]">{ach}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
 
-              {/* Tech Stack Pills */}
-              <div className="pt-4 border-t border-white/[0.06] flex flex-wrap items-center gap-2">
-                <span className="text-[11px] font-mono text-[#998F8F] mr-1">
-                  Stack:
-                </span>
-                {item.techStack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-2.5 py-1 rounded-md bg-[#22201E] border border-white/[0.06] text-xs font-mono text-[#FAF7F3]/80"
-                  >
-                    {tech}
-                  </span>
-                ))}
+              {/* Tech Stack (Plain inline text - no pill wrappers) */}
+              <div className="text-xs font-mono text-[#6B625A]">
+                <span className="font-semibold text-[#1A1614] mr-2">Core Stack:</span>
+                {item.techStack.join(" • ")}
               </div>
             </motion.div>
           ))}

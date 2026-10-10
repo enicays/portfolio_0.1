@@ -48,9 +48,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <body
-        className={`${poppins.variable} ${roboto.variable} antialiased bg-[#121110] text-[#FAF7F3] selection:bg-[#C5FF41] selection:text-[#121110]`}
+        className={`${poppins.variable} ${roboto.variable} antialiased bg-[#F2EDE4] text-[#1A1614] selection:bg-[#E8341C] selection:text-white`}
       >
         {children}
       </body>

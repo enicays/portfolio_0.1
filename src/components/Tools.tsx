@@ -20,74 +20,71 @@ export default function Tools() {
   const renderToolLogo = (iconType: string) => {
     switch (iconType) {
       case "nextjs":
-        return <NextjsLogo className="w-9 h-9" />;
+        return <NextjsLogo className="w-8 h-8" />;
       case "react":
-        return <ReactLogo className="w-9 h-9" />;
+        return <ReactLogo className="w-8 h-8" />;
       case "typescript":
-        return <TypeScriptLogo className="w-8 h-8" />;
+        return <TypeScriptLogo className="w-7 h-7" />;
       case "tailwind":
-        return <TailwindLogo className="w-8 h-8" />;
+        return <TailwindLogo className="w-7 h-7" />;
       case "nodejs":
-        return <NodejsLogo className="w-9 h-9" />;
+        return <NodejsLogo className="w-8 h-8" />;
       case "postgresql":
-        return <PostgreSQLLogo className="w-8 h-8" />;
+        return <PostgreSQLLogo className="w-7 h-7" />;
       case "figma":
-        return <FigmaLogo className="w-6 h-9" />;
+        return <FigmaLogo className="w-5 h-8" />;
       case "github":
-        return <GithubLogo className="w-8 h-8 text-black" />;
+        return <GithubLogo className="w-7 h-7 text-black" />;
       default:
-        return <div className="w-8 h-8 bg-black rounded" />;
+        return <div className="w-7 h-7 bg-black rounded" />;
     }
   };
 
   return (
-    <section id="tools" className="py-14 lg:py-20 relative border-t border-white/[0.06]">
+    <section id="tools" className="py-14 lg:py-20 relative scroll-mt-28 border-t border-[#D9D1C5]">
       <div className="w-full">
-        {/* Large Sawad Display Heading */}
+        {/* Section Heading (Confident, quiet, plain heading with white space) */}
         <motion.div
-          initial={{ opacity: 0, y: 35 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="mb-14 sm:mb-20 select-none"
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="max-w-2xl mb-12 sm:mb-16"
         >
-          <h2 className="font-display font-black text-6xl sm:text-7xl md:text-8xl lg:text-[7.5rem] tracking-tight leading-[0.88] uppercase">
-            <span className="block text-[#FAF7F3] drop-shadow-sm">
-              PREMIUM
-            </span>
-            <span className="block text-[#2e2c2a] transition-colors">
-              TOOLS
-            </span>
+          <h2 className="font-display font-black text-3xl sm:text-5xl lg:text-6xl text-[#1A1614] tracking-tight uppercase">
+            Tools &amp; Technologies
           </h2>
+          <p className="text-sm sm:text-base text-[#6B625A] mt-3 font-normal leading-relaxed">
+            A focused stack of modern technologies I use daily to design, engineer, and deploy reliable web products.
+          </p>
         </motion.div>
 
-        {/* 2-Column Client-Friendly Tools Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 lg:gap-x-24 gap-y-9 sm:gap-y-12 max-w-4xl">
+        {/* 2-Column Grid with generous white space and authentic practitioner notes */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-10 sm:gap-y-12">
           {tools.map((tool, idx) => (
             <motion.div
               key={tool.name}
-              initial={{ opacity: 0, y: 25 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
+              viewport={{ once: true, margin: "-30px" }}
               transition={{
                 duration: 0.5,
-                delay: idx * 0.08,
+                delay: idx * 0.06,
                 ease: [0.21, 0.47, 0.32, 0.98],
               }}
-              whileHover={{ x: 6, transition: { duration: 0.2 } }}
-              className="group flex items-center gap-4 sm:gap-5 cursor-default transition-all duration-200"
+              className="group flex items-start gap-4 sm:gap-5 cursor-default"
             >
-              {/* White rounded squircle icon container */}
-              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white flex items-center justify-center shrink-0 shadow-lg p-2.5 transition-transform duration-200 group-hover:scale-105 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]">
+              {/* Tinted squircle icon container */}
+              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-[#FCFAF7] border border-[#D9D1C5] flex items-center justify-center shrink-0 shadow-xs p-2.5 transition-transform duration-200 group-hover:scale-105">
                 {renderToolLogo(tool.iconType)}
               </div>
 
-              {/* Title & Client-Friendly Subtitle */}
+              {/* Title & Authentic Practitioner Note */}
               <div className="flex flex-col">
-                <h3 className="font-display font-bold text-xl sm:text-2xl text-[#FAF7F3] group-hover:text-[#C5FF41] transition-colors leading-tight">
+                <h3 className="font-display font-bold text-lg sm:text-xl text-[#1A1614] group-hover:text-[#E8341C] transition-colors leading-tight">
                   {tool.name}
                 </h3>
-                <p className="text-sm sm:text-base text-[#998F8F] font-normal leading-normal mt-0.5">
+                <p className="text-sm text-[#6B625A] font-normal leading-relaxed mt-1">
                   {tool.subtitle}
                 </p>
               </div>

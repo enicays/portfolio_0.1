@@ -6,27 +6,25 @@
 }
 
 :root {
-  --bg-dark: #121110;
-  --bg-card: #181716;
-  --bg-card-hover: #1f1d1b;
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-glow: rgba(197, 255, 65, 0.35);
-  --accent-lime: #C5FF41;
-  --accent-orange: #F46C38;
-  --text-primary: #FAF7F3;
-  --text-muted: #998F8F;
+  --bg-dark: #F2EDE4;
+  --bg-card: #FCFAF7;
+  --bg-card-hover: #F5EFE6;
+  --border-subtle: #D9D1C5;
+  --accent-red: #E8341C;
+  --text-primary: #1A1614;
+  --text-muted: #6B625A;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #121110;
-  color: #FAF7F3;
+  background-color: #F2EDE4;
+  color: #1A1614;
   font-family: var(--font-roboto), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 body {
-  background-color: #121110;
-  color: #FAF7F3;
+  background-color: #F2EDE4;
+  color: #1A1614;
   min-height: 100vh;
   overflow-x: hidden;
   font-family: var(--font-roboto), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -37,25 +35,25 @@ h1, h2, h3, h4, h5, h6, .font-display {
   font-family: var(--font-poppins), sans-serif;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar with warm stone tint */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #121110;
+  background: #EAE3D6;
 }
 ::-webkit-scrollbar-thumb {
-  background: #272524;
+  background: #C8BFB3;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3a3735;
+  background: #A89F93;
 }
 
-/* Text selection with signature Sawad neon lime */
+/* Text selection with restrained portrait red */
 ::selection {
-  background-color: #C5FF41;
-  color: #121110;
+  background-color: #E8341C;
+  color: #FFFFFF;
 }
 
 /* Infinite Marquee Animation */
@@ -71,45 +69,21 @@ h1, h2, h3, h4, h5, h6, .font-display {
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 30s linear infinite;
+  animation: marquee 35s linear infinite;
 }
 
 .animate-marquee:hover {
   animation-play-state: paused;
 }
 
-/* Glassmorphism utility */
-.glass-panel {
-  background: rgba(24, 23, 22, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.glass-panel-hover:hover {
-  border-color: rgba(197, 255, 65, 0.35);
-  box-shadow: 0 0 25px rgba(197, 255, 65, 0.08);
-}
-
-/* Outline text effect for display typography */
-.text-stroke {
-  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.2);
-  color: transparent;
-  transition: all 0.3s ease;
-}
-
-.text-stroke:hover {
-  -webkit-text-stroke: 1.5px #C5FF41;
-  color: rgba(197, 255, 65, 0.1);
-}
-
-/* --- Multi-step Inquiry Form Styles --- */
+/* Multi-step Inquiry Form Styles (Warm Paper Palette) */
 .inquiry-card {
   width: 100%;
-  background: #1a1918;
-  border: 1px solid #2b2928;
+  background: #FCFAF7;
+  border: 1px solid #D9D1C5;
   border-radius: 28px;
   padding: 40px 40px 36px;
+  box-shadow: 0 4px 24px rgba(26, 22, 20, 0.04);
 }
 
 .inquiry-h2 {
@@ -118,12 +92,12 @@ h1, h2, h3, h4, h5, h6, .font-display {
   font-weight: 700;
   font-size: 26px;
   letter-spacing: -0.01em;
-  color: #f5f4f2;
+  color: #1A1614;
 }
 
 .inquiry-sub {
   margin: 0 0 24px;
-  color: #a8a29e;
+  color: #6B625A;
   font-size: 14px;
   line-height: 1.5;
 }
@@ -131,17 +105,17 @@ h1, h2, h3, h4, h5, h6, .font-display {
 .inquiry-progress { display: flex; gap: 6px; margin-bottom: 8px; }
 .inquiry-progress span {
   flex: 1; height: 3px; border-radius: 3px;
-  background: #2b2928;
+  background: #D9D1C5;
   transition: background .25s;
 }
-.inquiry-progress span.done { background: #c8ff3f; }
+.inquiry-progress span.done { background: #E8341C; }
 .inquiry-step-count {
   margin: 0 0 28px;
   font-family: monospace;
   font-size: 11px;
   letter-spacing: .08em;
   text-transform: uppercase;
-  color: #a8a29e;
+  color: #6B625A;
 }
 
 .inquiry-legend, .inquiry-lbl {
@@ -152,7 +126,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
   font-size: 11px;
   letter-spacing: .08em;
   text-transform: uppercase;
-  color: #a8a29e;
+  color: #6B625A;
 }
 .inquiry-legend { float: left; width: 100%; }
 .inquiry-legend + * { clear: both; }
@@ -162,10 +136,10 @@ h1, h2, h3, h4, h5, h6, .font-display {
 
 .inquiry-input, .inquiry-select, .inquiry-textarea {
   width: 100%;
-  background: #141312;
-  border: 1px solid #2b2928;
+  background: #FAF7F2;
+  border: 1px solid #D9D1C5;
   border-radius: 14px;
-  color: #f5f4f2;
+  color: #1A1614;
   font: inherit;
   font-size: 14px;
   padding: 14px 16px;
@@ -175,17 +149,17 @@ h1, h2, h3, h4, h5, h6, .font-display {
   appearance: none;
   -webkit-appearance: none;
   padding-right: 40px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23a8a29e' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%236B625A' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 16px center;
 }
 .inquiry-textarea { min-height: 104px; resize: vertical; line-height: 1.5; }
-.inquiry-input::placeholder, .inquiry-textarea::placeholder { color: #6b6662; }
+.inquiry-input::placeholder, .inquiry-textarea::placeholder { color: #9E968D; }
 
 .inquiry-input:focus-visible, .inquiry-select:focus-visible, .inquiry-textarea:focus-visible {
   outline: none;
-  border-color: #c8ff3f;
-  box-shadow: 0 0 0 3px rgba(200, 255, 63, .15);
+  border-color: #E8341C;
+  box-shadow: 0 0 0 3px rgba(232, 52, 28, .12);
 }
 
 .inquiry-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px; }
@@ -199,40 +173,46 @@ h1, h2, h3, h4, h5, h6, .font-display {
   display: flex; align-items: center; gap: 10px;
   min-height: 52px;
   padding: 12px 14px;
-  background: #141312;
-  border: 1px solid #2b2928;
+  background: #FAF7F2;
+  border: 1px solid #D9D1C5;
   border-radius: 14px;
   font-size: 14px;
   line-height: 1.25;
-  color: #f5f4f2;
+  color: #1A1614;
   transition: border-color .15s, background .15s;
 }
 .inquiry-opt span::before {
   content: "";
   flex: none;
   width: 16px; height: 16px;
-  border: 1.5px solid #3d3a38;
+  border: 1.5px solid #C4BCB0;
   border-radius: 50%;
   transition: all .15s;
 }
 .inquiry-opt.check span::before { border-radius: 5px; }
-.inquiry-opt:hover span { border-color: #3d3a38; }
-.inquiry-opt input:checked + span { border-color: #c8ff3f; background: rgba(200, 255, 63, 0.08); }
-.inquiry-opt input:checked + span::before {
-  border-color: #c8ff3f;
-  background: #c8ff3f center / 10px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='none' stroke='%2311140a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 5.2l2.2 2.2L8 3'/%3E%3C/svg%3E");
+.inquiry-opt:hover span { border-color: #A89F93; }
+.inquiry-opt input:checked + span {
+  border-color: #E8341C;
+  background: rgba(232, 52, 28, 0.05);
 }
-.inquiry-opt input:focus-visible + span { box-shadow: 0 0 0 3px rgba(200, 255, 63, .25); border-color: #c8ff3f; }
+.inquiry-opt input:checked + span::before {
+  border-color: #E8341C;
+  background: #E8341C center / 10px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 5.2l2.2 2.2L8 3'/%3E%3C/svg%3E");
+}
+.inquiry-opt input:focus-visible + span {
+  box-shadow: 0 0 0 3px rgba(232, 52, 28, .18);
+  border-color: #E8341C;
+}
 
-.inquiry-hint { margin: 0 0 4px; font-size: 13px; color: #a8a29e; }
+.inquiry-hint { margin: 0 0 4px; font-size: 13px; color: #6B625A; }
 
 .inquiry-error {
   min-height: 18px;
   margin: 10px 0 0;
   font-size: 13px;
-  color: #ff6b5e;
+  color: #E8341C;
 }
-.inquiry-invalid { border-color: #ff6b5e !important; }
+.inquiry-invalid { border-color: #E8341C !important; }
 
 .inquiry-actions { display: flex; align-items: center; gap: 12px; margin-top: 18px; }
 .inquiry-btn {
@@ -244,33 +224,44 @@ h1, h2, h3, h4, h5, h6, .font-display {
   cursor: pointer;
   transition: transform .1s, filter .15s, border-color .15s;
 }
-.inquiry-btn:focus-visible { outline: 2px solid #c8ff3f; outline-offset: 3px; }
-.inquiry-btn-primary { flex: 1; background: #c8ff3f; color: #11140a; }
+.inquiry-btn:focus-visible { outline: 2px solid #E8341C; outline-offset: 3px; }
+.inquiry-btn-primary { flex: 1; background: #E8341C; color: #FFFFFF; }
 .inquiry-btn-primary:hover { filter: brightness(1.06); }
 .inquiry-btn-primary:active { transform: translateY(1px); }
 .inquiry-btn-primary:disabled { opacity: .6; cursor: progress; }
 .inquiry-btn-back {
   padding: 0 20px;
   background: transparent;
-  color: #f5f4f2;
-  border: 1px solid #2b2928;
+  color: #1A1614;
+  border: 1px solid #D9D1C5;
   font-weight: 500;
 }
-.inquiry-btn-back:hover { border-color: #3d3a38; }
+.inquiry-btn-back:hover { border-color: #1A1614; }
 .inquiry-btn svg { width: 17px; height: 17px; }
 
-.inquiry-reply-note { margin: 16px 0 0; text-align: center; font-size: 13px; color: #a8a29e; }
+.inquiry-reply-note { margin: 16px 0 0; text-align: center; font-size: 13px; color: #6B625A; }
 
 .inquiry-success { text-align: center; padding: 20px 0 8px; }
 .inquiry-tick {
   width: 56px; height: 56px; margin: 0 auto 20px;
   display: grid; place-items: center;
   border-radius: 50%;
-  background: #c8ff3f;
+  background: #E8341C;
 }
-.inquiry-tick svg { width: 26px; height: 26px; }
-.inquiry-success h3 { margin: 0 0 8px; font-family: var(--font-poppins), sans-serif; font-size: 22px; color: #f5f4f2; font-weight: 700; }
-.inquiry-success p { margin: 0; color: #a8a29e; font-size: 14px; line-height: 1.6; }
+.inquiry-tick svg { width: 26px; height: 26px; stroke: #FFFFFF; }
+.inquiry-success h3 {
+  margin: 0 0 8px;
+  font-family: var(--font-poppins), sans-serif;
+  font-size: 22px;
+  color: #1A1614;
+  font-weight: 700;
+}
+.inquiry-success p {
+  margin: 0;
+  color: #6B625A;
+  font-size: 14px;
+  line-height: 1.6;
+}
 
 @media (max-width: 480px) {
   .inquiry-card { padding: 30px 22px 28px; border-radius: 24px; }

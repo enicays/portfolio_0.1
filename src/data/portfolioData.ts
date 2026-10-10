@@ -100,23 +100,18 @@ export const portfolioData: PortfolioData = {
     socials: [
       {
         platform: "GitHub",
-        url: "https://github.com",
-        handle: "@alexrivera-dev",
+        url: "https://github.com/enicays",
+        handle: "enicays",
       },
       {
         platform: "LinkedIn",
         url: "https://linkedin.com",
-        handle: "alex-rivera-swe",
-      },
-      {
-        platform: "Twitter / X",
-        url: "https://x.com",
-        handle: "@alexrivera_tech",
+        handle: "Silem Yacine",
       },
       {
         platform: "Email",
-        url: "mailto:alex.rivera.dev@gmail.com",
-        handle: "alex.rivera.dev@gmail.com",
+        url: "mailto:yacine.silem.dev@gmail.com",
+        handle: "yacine.silem.dev@gmail.com",
       },
     ],
   },
@@ -160,7 +155,7 @@ export const portfolioData: PortfolioData = {
       techStack: ["Next.js 15", "React", "TypeScript", "Tailwind CSS", "Go", "Redis", "PostgreSQL", "Docker", "AWS ECS"],
       liveUrl: "https://example.com/apex-demo",
       githubUrl: "https://github.com/example/apex-engine",
-      accentColor: "#C5FF41",
+      accentColor: "#E8341C",
     },
     {
       id: "hyperflux-metrics",
@@ -187,7 +182,7 @@ export const portfolioData: PortfolioData = {
       techStack: ["React 19", "Next.js", "ClickHouse", "Go", "WebSockets", "Tailwind CSS", "Framer Motion"],
       liveUrl: "https://example.com/hyperflux",
       githubUrl: "https://github.com/example/hyperflux-analytics",
-      accentColor: "#38BDF8",
+      accentColor: "#E8341C",
     },
     {
       id: "lumina-vault",
@@ -214,7 +209,7 @@ export const portfolioData: PortfolioData = {
       techStack: ["TypeScript", "Node.js", "Next.js", "PostgreSQL", "Prisma ORM", "Redis", "Tailwind CSS"],
       liveUrl: "https://example.com/lumina-vault",
       githubUrl: "https://github.com/example/lumina-core",
-      accentColor: "#F46C38",
+      accentColor: "#E8341C",
     },
     {
       id: "strata-cms",
@@ -240,7 +235,7 @@ export const portfolioData: PortfolioData = {
       techStack: ["Next.js", "TypeScript", "GraphQL", "PostgreSQL", "Tailwind CSS", "Docker"],
       liveUrl: "https://example.com/strata-cms",
       githubUrl: "https://github.com/example/strata-headless",
-      accentColor: "#A78BFA",
+      accentColor: "#E8341C",
     },
   ],
   experience: [
@@ -252,7 +247,7 @@ export const portfolioData: PortfolioData = {
       period: "2024 - Present",
       isCurrent: true,
       type: "Freelance",
-      description: "Delivering custom full-stack web applications, e-commerce stores, high-converting landing pages, and modern showcase (vitrine) websites for clients.",
+      description: "Delivering custom full-stack web applications, e-commerce stores, high-converting landing pages, and modern showcase websites for clients worldwide.",
       achievements: [
         "Built and deployed responsive full-stack websites and e-commerce platforms with intuitive user experiences and secure checkout flows.",
         "Created high-speed landing pages and modern showcase websites optimized for fast load times, SEO, and clean visual design.",
@@ -263,12 +258,12 @@ export const portfolioData: PortfolioData = {
     {
       id: "exp-2",
       role: "Software Developer — Graduation Project",
-      company: "Algérie Poste",
+      company: "Algeria Post",
       location: "Algiers, Algeria",
       period: "2024",
       isCurrent: false,
       type: "Graduation Project",
-      description: "Designed and engineered a full-stack HR (Ressources Humaines) management software for Algérie Poste to modernize administrative workflows and personnel records.",
+      description: "Designed and engineered a full-stack Human Resources (HR) management system for Algeria Post to modernize administrative workflows and personnel records.",
       achievements: [
         "Architected a comprehensive HR dashboard featuring employee management, department directories, and administrative controls.",
         "Implemented an automated leave and absence tracking system to replace manual record-keeping with seamless digital approvals.",
@@ -280,42 +275,42 @@ export const portfolioData: PortfolioData = {
   tools: [
     {
       name: "Next.js",
-      subtitle: "Web Application Engine",
+      subtitle: "My core framework for building full-stack applications with server components and edge API routes.",
       iconType: "nextjs",
     },
     {
       name: "React",
-      subtitle: "Interactive User Interfaces",
+      subtitle: "Used for crafting responsive, interactive client components and state-driven web interfaces.",
       iconType: "react",
     },
     {
       name: "TypeScript",
-      subtitle: "Reliable & Stable Code",
+      subtitle: "Strict type safety across the entire codebase to catch bugs early and build maintainable apps.",
       iconType: "typescript",
     },
     {
       name: "Tailwind CSS",
-      subtitle: "Modern Responsive Styling",
+      subtitle: "Rapid utility-first styling to build bespoke, responsive, and performance-minded design systems.",
       iconType: "tailwind",
     },
     {
       name: "Node.js",
-      subtitle: "Backend & API Services",
+      subtitle: "Building lightweight, event-driven REST APIs, backend services, and server-side utilities.",
       iconType: "nodejs",
     },
     {
       name: "PostgreSQL",
-      subtitle: "Secure Cloud Database",
+      subtitle: "Primary relational database for structured schemas, relational queries, and transactional integrity.",
       iconType: "postgresql",
     },
     {
       name: "Figma",
-      subtitle: "UI/UX Design & Prototyping",
+      subtitle: "Translating wireframes and client requirements into clean, production-ready interface mockups.",
       iconType: "figma",
     },
     {
       name: "GitHub",
-      subtitle: "Cloud Delivery & Deployment",
+      subtitle: "Version control, collaboration, code reviews, and automated CI/CD deployment pipelines.",
       iconType: "github",
     },
   ],

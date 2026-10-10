@@ -465,7 +465,7 @@ export default function InquiryForm() {
               setEmail("");
               setNotes("");
             }}
-            className="mt-6 px-5 py-2.5 rounded-xl bg-[#141312] border border-[#2b2928] text-xs font-mono text-[#f5f4f2] hover:border-[#c8ff3f] transition-colors"
+            className="mt-6 px-5 py-2.5 rounded-xl bg-[#FCFAF7] border border-[#D9D1C5] text-xs font-mono text-[#1A1614] hover:border-[#E8341C] transition-colors cursor-pointer"
           >
             Send another inquiry
           </button>

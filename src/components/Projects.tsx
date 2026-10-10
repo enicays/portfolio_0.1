@@ -3,8 +3,7 @@
 import React, { useState } from "react";
 import { portfolioData, Project } from "@/data/portfolioData";
 import ProjectModal from "./ProjectModal";
-import { ArrowUpRight, ExternalLink, Sparkles, Layers } from "lucide-react";
-import { GithubIcon } from "./Icons";
+import { ArrowUpRight, Layers } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Projects() {
@@ -12,111 +11,102 @@ export default function Projects() {
   const { projects } = portfolioData;
 
   return (
-    <section id="projects" className="py-14 lg:py-20 relative">
+    <section id="projects" className="py-12 lg:py-18 relative scroll-mt-28">
       <div className="w-full">
-        {/* Section Heading */}
+        {/* Section Heading (Plain, dignified typography - no eyebrow, no two-tone) */}
         <motion.div
-          initial={{ opacity: 0, y: 32 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.65, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6"
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-14 gap-6"
         >
           <div>
-            <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-[#C5FF41] uppercase mb-3">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>SELECTED WORKS</span>
-            </div>
-            <h2 className="font-display font-black text-3xl sm:text-5xl lg:text-6xl text-[#FAF7F3] tracking-tight uppercase">
-              RECENT <span className="text-[#C5FF41]">PROJECTS</span>
+            <h2 className="font-display font-black text-3xl sm:text-5xl lg:text-6xl text-[#1A1614] tracking-tight uppercase">
+              Selected Projects
             </h2>
           </div>
-          <p className="text-sm sm:text-base text-[#998F8F] max-w-md font-light leading-relaxed">
-            Engineered with a focus on scalable distributed backends, strict type safety, and polished, responsive frontend interfaces.
+          <p className="text-sm sm:text-base text-[#6B625A] max-w-md font-normal leading-relaxed">
+            Engineered with a focus on scalable distributed backends, strict type safety, and polished, responsive user interfaces.
           </p>
         </motion.div>
 
-        {/* Projects Grid */}
+        {/* Projects Grid (Rich visual presence, warm paper cards, no fake window dots) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
           {projects.map((project, idx) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 35 }}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: true, margin: "-40px" }}
               transition={{
-                duration: 0.6,
-                delay: idx * 0.12,
+                duration: 0.55,
+                delay: idx * 0.1,
                 ease: [0.21, 0.47, 0.32, 0.98],
               }}
-              whileHover={{ y: -6, transition: { duration: 0.25 } }}
-              className="group relative flex flex-col justify-between p-6 sm:p-8 rounded-3xl bg-[#181716]/90 border border-white/[0.08] hover:border-[#C5FF41]/40 transition-all duration-300 hover:bg-[#1C1A19] hover:shadow-[0_10px_35px_rgba(0,0,0,0.4)]"
+              className="group relative flex flex-col justify-between p-6 sm:p-8 rounded-3xl bg-[#FCFAF7] border border-[#D9D1C5] hover:border-[#1A1614]/30 transition-all duration-200 shadow-xs"
             >
-              {/* Card Top Meta */}
+              {/* Card Top Meta (Plain text instead of pill badges) */}
               <div>
-                <div className="flex items-center justify-between gap-3 mb-6">
-                  <div className="flex items-center gap-2.5">
-                    <span className="px-3 py-1 rounded-full bg-white/[0.05] border border-white/[0.08] text-[11px] font-mono font-medium text-[#FAF7F3]">
+                <div className="flex items-center justify-between gap-3 mb-5">
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs font-mono font-medium text-[#6B625A] uppercase tracking-wider">
                       {project.category}
                     </span>
-                    <span className="text-xs font-mono text-[#998F8F]">
+                    <span className="text-xs font-mono text-[#D9D1C5]">/</span>
+                    <span className="text-xs font-mono text-[#6B625A]">
                       {project.year}
                     </span>
                   </div>
 
-                  <span className="text-xs font-mono font-bold text-[#998F8F] group-hover:text-[#C5FF41] transition-colors">
+                  <span className="text-xs font-mono font-bold text-[#6B625A]">
                     0{idx + 1}
                   </span>
                 </div>
 
-                {/* Visual Preview Container */}
+                {/* Big Visual Preview Container (No fake window dots, clean typographic focus) */}
                 <div
                   onClick={() => setSelectedProject(project)}
-                  className="w-full h-48 sm:h-56 rounded-2xl bg-[#141312] border border-white/[0.06] p-5 mb-6 cursor-pointer relative overflow-hidden group/thumb transition-all duration-300 group-hover:border-[#C5FF41]/30 flex flex-col justify-between"
+                  className="w-full h-48 sm:h-56 rounded-2xl bg-[#FAF7F2] border border-[#D9D1C5] p-6 mb-6 cursor-pointer relative overflow-hidden group/thumb transition-all duration-200 hover:border-[#E8341C]/50 flex flex-col justify-between"
                 >
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#f46c38]/80" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#c5ff41]/80" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-sky-400/80" />
-                    </div>
-                    <span className="text-[10px] font-mono text-[#998F8F]">
-                      architecture.v{project.year}
+                    <span className="text-[11px] font-mono font-semibold tracking-wider text-[#6B625A] uppercase">
+                      Architecture Overview
                     </span>
+                    <ArrowUpRight className="w-4 h-4 text-[#6B625A] group-hover/thumb:text-[#E8341C] group-hover/thumb:translate-x-0.5 group-hover/thumb:-translate-y-0.5 transition-all duration-150" />
                   </div>
 
-                  <div className="space-y-2 my-auto">
-                    <div className="text-xs font-mono text-[#C5FF41] opacity-75">
+                  <div className="space-y-1.5 my-auto">
+                    <div className="text-xs font-mono text-[#E8341C]">
                       {"// " + project.title}
                     </div>
-                    <div className="font-display font-black text-xl sm:text-2xl text-[#FAF7F3] tracking-tight group-hover/thumb:text-[#C5FF41] transition-colors">
+                    <div className="font-display font-bold text-xl sm:text-2xl text-[#1A1614] tracking-tight group-hover/thumb:text-[#E8341C] transition-colors">
                       {project.subtitle}
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between pt-2 border-t border-white/[0.05] text-[11px] font-mono text-[#998F8F]">
-                    <span>Click to open case study</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-[#C5FF41] transition-transform duration-200 group-hover/thumb:translate-x-0.5 group-hover/thumb:-translate-y-0.5" />
+                  <div className="pt-2 border-t border-[#D9D1C5] text-[11px] font-mono text-[#6B625A]">
+                    Click to view complete case study
                   </div>
                 </div>
 
                 {/* Title & Description */}
-                <h3 className="font-display font-black text-2xl sm:text-3xl text-[#FAF7F3] tracking-tight mb-2 group-hover:text-[#C5FF41] transition-colors">
+                <h3 className="font-display font-bold text-2xl text-[#1A1614] tracking-tight mb-2 group-hover:text-[#E8341C] transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-[#998F8F] leading-relaxed mb-6 font-light">
+                <p className="text-sm text-[#6B625A] leading-relaxed mb-6 font-normal">
                   {project.summary}
                 </p>
 
-                {/* Key Metrics Quick Ribbon */}
+                {/* Key Metrics Quick Ribbon (Tinted flat container) */}
                 {project.metrics && project.metrics.length > 0 && (
-                  <div className="grid grid-cols-3 gap-2 p-3 rounded-xl bg-[#141312] border border-white/[0.04] mb-6">
+                  <div className="grid grid-cols-3 gap-2 p-3 rounded-xl bg-[#FAF7F2] border border-[#D9D1C5] mb-6">
                     {project.metrics.map((m, mIdx) => (
                       <div key={mIdx} className="text-center">
-                        <div className="font-display font-bold text-sm sm:text-base text-[#C5FF41]">
+                        <div className="font-display font-bold text-sm sm:text-base text-[#1A1614]">
                           {m.value}
                         </div>
-                        <div className="text-[9px] font-mono text-[#998F8F] uppercase truncate">
+                        <div className="text-[10px] font-mono text-[#6B625A] uppercase truncate mt-0.5">
                           {m.label}
                         </div>
                       </div>
@@ -124,53 +114,34 @@ export default function Projects() {
                   </div>
                 )}
 
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1.5 mb-6">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/[0.06] text-[11px] font-mono text-[#FAF7F3]/80"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                {/* Tech Stack (Plain clean comma-style or subtle text instead of heavy pills) */}
+                <div className="text-xs font-mono text-[#6B625A] mb-6 leading-relaxed">
+                  <span className="font-semibold text-[#1A1614] mr-2">Technologies:</span>
+                  {project.tags.join(" • ")}
                 </div>
               </div>
 
               {/* Card Footer Actions */}
-              <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between gap-3">
+              <div className="pt-4 border-t border-[#D9D1C5] flex items-center justify-between gap-3">
                 <button
+                  type="button"
                   onClick={() => setSelectedProject(project)}
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#C5FF41]/10 border border-[#C5FF41]/25 text-xs font-bold text-[#C5FF41] hover:bg-[#C5FF41] hover:text-[#121110] transition-all duration-200"
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#FAF7F2] border border-[#D9D1C5] text-xs font-semibold text-[#1A1614] hover:border-[#E8341C] hover:text-[#E8341C] transition-all duration-150 cursor-pointer"
                 >
-                  <Layers className="w-3.5 h-3.5" />
+                  <Layers className="w-3.5 h-3.5 text-[#E8341C]" />
                   <span>Case Study</span>
                 </button>
 
-                <div className="flex items-center gap-2">
-                  {project.githubUrl && (
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 rounded-xl bg-white/[0.04] border border-white/[0.08] text-[#998F8F] hover:text-[#FAF7F3] hover:border-white/20 transition-colors"
-                      title="View GitHub repository"
-                    >
-                      <GithubIcon className="w-4 h-4" />
-                    </a>
-                  )}
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 rounded-xl bg-white/[0.04] border border-white/[0.08] text-[#998F8F] hover:text-[#C5FF41] hover:border-[#C5FF41]/40 transition-colors"
-                      title="Open Live Preview"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-                  )}
-                </div>
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-mono font-medium text-[#6B625A] hover:text-[#E8341C] transition-colors"
+                  >
+                    Live Demo →
+                  </a>
+                )}
               </div>
             </motion.div>
           ))}
