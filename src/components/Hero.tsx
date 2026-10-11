@@ -82,16 +82,16 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.22, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="block lg:hidden mb-4"
+          className="block lg:hidden mb-6 max-w-sm mx-auto"
         >
           <div className="rounded-3xl bg-[#FCFAF7] border border-[#D9D1C5] p-5 shadow-xs">
-            <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden bg-[#EAE3D6] border border-[#D9D1C5] mb-4">
+            <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden bg-[#EAE3D6] border border-[#D9D1C5] mb-4">
               <Image
                 src={personal.avatarUrl || "/profile.webp"}
                 alt={personal.name}
                 fill
                 priority
-                sizes="(max-width: 640px) 100vw, 400px"
+                sizes="(max-width: 640px) 100vw, 380px"
                 quality={85}
                 className="object-cover object-top rounded-2xl"
               />
@@ -111,7 +111,7 @@ export default function Hero() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.55, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="grid grid-cols-2 gap-3 sm:gap-4 max-w-md pt-1"
+          className="grid grid-cols-2 gap-3 sm:gap-4 max-w-sm lg:max-w-md mx-auto lg:mx-0 pt-1"
         >
           <div className="p-5 rounded-2xl bg-[#FCFAF7] border border-[#D9D1C5]">
             <div className="font-display font-black text-3xl sm:text-4xl text-[#1A1614] tracking-tight mb-1">
