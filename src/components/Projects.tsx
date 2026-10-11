@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { portfolioData, Project } from "@/data/portfolioData";
 import ProjectModal from "./ProjectModal";
 import { ArrowUpRight, Users, TrendingUp, Sparkles } from "lucide-react";
@@ -10,8 +11,41 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const { projects } = portfolioData;
 
-  const renderProjectThumbnail = (id: string) => {
-    if (id === "hr-system") {
+  const renderProjectThumbnail = (project: Project) => {
+    if (project.thumbnail) {
+      return (
+        <div className="relative w-full h-full overflow-hidden bg-[#181615] group/thumb">
+          <Image
+            src={project.thumbnail}
+            alt={project.title}
+            fill
+            sizes="(max-width: 640px) 112px, (max-width: 1024px) 176px, 224px"
+            className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
+            priority={project.featured}
+          />
+          {/* Subtle gradient vignette */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#181615]/85 via-black/20 to-transparent pointer-events-none" />
+
+          {/* Header badges */}
+          <div className="absolute top-2 left-2 right-2 flex items-center justify-between pointer-events-none">
+            <span className="px-1.5 py-0.5 rounded bg-black/70 backdrop-blur-xs text-white/95 text-[8px] sm:text-[9px] font-mono font-medium border border-white/10">
+              Algérie Poste
+            </span>
+            <span className="px-1.5 py-0.5 rounded bg-[#E8341C] text-white text-[7px] sm:text-[8px] font-mono font-bold shadow-xs">
+              Live UI
+            </span>
+          </div>
+
+          {/* Footer note */}
+          <div className="absolute bottom-1.5 left-2 right-2 flex items-center justify-between text-[8px] font-mono text-white/80 pointer-events-none">
+            <span className="truncate">HR &amp; Presence System</span>
+            <span className="text-[7px] text-white/60">3 Screens</span>
+          </div>
+        </div>
+      );
+    }
+
+    if (project.id === "hr-system") {
       return (
         <div className="w-full h-full bg-[#181615] p-3 sm:p-4 flex flex-col justify-between select-none relative overflow-hidden">
           {/* Subtle gradient accent */}
@@ -55,7 +89,7 @@ export default function Projects() {
       );
     }
 
-    if (id === "crm-system") {
+    if (project.id === "crm-system") {
       return (
         <div className="w-full h-full bg-[#181615] p-3 sm:p-4 flex flex-col justify-between select-none relative overflow-hidden">
           {/* Top pipeline bar mockup */}
@@ -165,7 +199,7 @@ export default function Projects() {
             >
               {/* Left: Thumbnail Preview Container */}
               <div className="relative w-28 h-24 sm:w-44 sm:h-36 lg:w-56 lg:h-38 rounded-2xl overflow-hidden shrink-0 border border-[#D9D1C5] shadow-sm">
-                {renderProjectThumbnail(project.id)}
+                {renderProjectThumbnail(project)}
               </div>
 
               {/* Center: Title & Subtitle */}

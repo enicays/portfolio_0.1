@@ -1,3 +1,9 @@
+export interface ProjectScreenshot {
+  url: string;
+  title: string;
+  caption: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -16,6 +22,8 @@ export interface Project {
   liveUrl?: string;
   githubUrl?: string;
   accentColor?: string;
+  thumbnail?: string;
+  screenshots?: ProjectScreenshot[];
 }
 
 export interface ExperienceItem {
@@ -131,26 +139,44 @@ export const portfolioData: PortfolioData = {
   projects: [
     {
       id: "hr-system",
-      title: "Enterprise HR System",
+      title: "Algérie Poste HR System",
       subtitle: "Personnel & Administrative Workflow System",
       category: "Full-Stack Enterprise System",
       year: "2024",
       featured: true,
-      summary: "A complete human resources management system engineered to modernize personnel records, administrative leave approvals, and employee directories.",
+      summary: "A complete human resources and attendance tracking platform developed for Algérie Poste to automate employee leave workflows, daily attendance logs, and administrative oversight.",
       tags: ["React", "Node.js", "Express", "PostgreSQL", "REST APIs", "Tailwind CSS"],
       metrics: [
         { label: "Leave Approvals", value: "100% digital" },
         { label: "Processing Speed", value: "-75% time" },
         { label: "Security", value: "Role-Based RBAC" },
       ],
-      overview: "Designed and engineered as a modern HR system for personnel record management, administrative leave workflows, and automated approval chains.",
-      challenge: "Replacing fragmented manual paperwork with automated multi-tier leave tracking while ensuring secure role-based access across departments.",
-      solution: "Built a full-stack architecture with React and Express, backed by normalized PostgreSQL relational schemas for personnel tracking and audit logging.",
+      thumbnail: "/projects/hr/leave-requests.webp",
+      screenshots: [
+        {
+          url: "/projects/hr/leave-requests.webp",
+          title: "Gestion des Demandes de Congé",
+          caption: "Demandes de congés avec filtrage multi-critères (Statut, Département) et double niveau de validation administrative (Chef & Admin).",
+        },
+        {
+          url: "/projects/hr/attendance-records.webp",
+          title: "Enregistrements & Registre de Présence",
+          caption: "Registre d'émargement dynamique avec suivi des heures d'arrivée/sortie, calcul automatique de la durée, alertes retards et export.",
+        },
+        {
+          url: "/projects/hr/attendance-summary.webp",
+          title: "Tableau de Bord & Indicateurs de Présence",
+          caption: "Synthèse quotidienne en temps réel présentant l'effectif global, les employés à l'heure, en retard et les absences par département.",
+        },
+      ],
+      overview: "Designed and engineered for Algérie Poste as a comprehensive full-stack HR solution to modernize employee records, digitize approval chains, and provide real-time attendance analytics.",
+      challenge: "Replacing slow, fragmented paper-based leave requests and manual attendance rosters while enforcing multi-tier role-based permissions across distinct postal divisions.",
+      solution: "Engineered a robust full-stack web application with React and Express, backed by normalized PostgreSQL relational schemas, automated status transitions, and audit-ready data persistence.",
       architectureHighlights: [
-        "Automated leave and absence tracking with digital approval hierarchies",
-        "Comprehensive personnel dashboard with searchable employee directory",
-        "Role-based access control (RBAC) ensuring data confidentiality",
-        "REST API backend designed for high reliability and secure record persistence",
+        "Automated leave approval lifecycle with multi-level validation hierarchy (Chef de Service & Admin)",
+        "Daily attendance tracking dashboard with instant punctuality categorization and record export",
+        "Role-based access control (RBAC) guaranteeing data confidentiality and administrative integrity",
+        "Normalized PostgreSQL database schemas with indexed queries for fast multi-department filtering",
       ],
       techStack: ["React", "Node.js", "Express", "PostgreSQL", "REST APIs", "Tailwind CSS"],
       accentColor: "#E8341C",
