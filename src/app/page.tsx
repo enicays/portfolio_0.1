@@ -22,7 +22,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 lg:pt-36 pb-12">
           <div className="flex flex-col lg:flex-row items-start gap-10 xl:gap-14">
             {/* Sticky Profile Card on Desktop */}
-            <div className="w-full lg:w-[340px] shrink-0 lg:sticky lg:top-24 lg:self-start z-30">
+            <div className="hidden lg:block lg:w-[340px] shrink-0 lg:sticky lg:top-24 lg:self-start z-30">
               <ProfileCard />
             </div>
 

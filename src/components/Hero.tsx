@@ -1,8 +1,9 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { portfolioData } from "@/data/portfolioData";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Hero() {
@@ -19,115 +20,121 @@ export default function Hero() {
   return (
     <section id="hero" className="relative pt-0 pb-12 lg:pb-16 scroll-mt-28">
       <div className="w-full relative z-10">
-        {/* Top Status & Location Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="flex flex-wrap items-center gap-2.5 mb-6"
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FCFAF7] border border-[#D9D1C5] text-xs shadow-xs">
-            <span className="flex h-2 w-2 rounded-full bg-[#E8341C]" />
-            <span className="font-mono text-[11px] text-[#6B625A] uppercase">STATUS:</span>
-            <span className="text-[#1A1614] font-medium">{personal.status}</span>
-          </div>
-
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FCFAF7] border border-[#D9D1C5] text-xs font-mono text-[#6B625A]">
-            <span>{personal.location}</span>
-          </div>
-        </motion.div>
-
-        {/* Display Role Heading (Solid near-black typography - no split colors) */}
+        {/* Main Value Proposition Headline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="mb-6 lg:mb-8 select-none"
+          transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="mb-5 sm:mb-6 select-none"
         >
-          <h1 className="font-display font-black text-5xl sm:text-7xl md:text-8xl lg:text-[7.2rem] tracking-tight leading-[0.9] text-[#1A1614] uppercase">
-            <span className="block">{personal.displayTitleLine1}</span>
-            <span className="block">{personal.displayTitleLine2}</span>
+          <h1 className="font-display font-black text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.6rem] tracking-tight leading-[0.95] sm:leading-[0.92] text-[#1A1614] uppercase">
+            <span className="block">WEBSITES AND</span>
+            <span className="block">APPS THAT BRING</span>
+            <span className="block">IN CLIENTS.</span>
           </h1>
         </motion.div>
 
-        {/* Introduction & Tagline */}
+        {/* Intro Subtitle */}
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.16, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="max-w-3xl mb-4"
+          transition={{ duration: 0.55, delay: 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="max-w-2xl mb-6 sm:mb-8"
         >
-          <p className="text-sm font-mono tracking-widest text-[#6B625A] uppercase mb-2">
-            Hey there, I am {personal.name}
-          </p>
-          <p className="text-xl sm:text-2xl lg:text-3xl font-normal text-[#1A1614] leading-relaxed">
-            {personal.tagline}
+          <p className="text-base sm:text-lg text-[#6B625A] font-normal leading-relaxed">
+            I&apos;m Yacine, a full-stack developer. I build fast, reliable web apps, from first idea to launch.
           </p>
         </motion.div>
 
-        {/* Bio paragraph & Action Buttons */}
+        {/* Primary CTAs & Microcopy */}
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.22, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12 lg:mb-16"
+          transition={{ duration: 0.55, delay: 0.16, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="mb-8 lg:mb-10"
         >
-          <div className="lg:col-span-7">
-            <p className="text-base sm:text-lg text-[#6B625A] font-normal leading-relaxed max-w-2xl">
-              {personal.bio}
-            </p>
-          </div>
-
-          <div className="lg:col-span-5 flex flex-wrap items-center gap-3.5 lg:justify-end">
-            <button
-              type="button"
-              onClick={() => handleScrollTo("projects")}
-              className="group flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-[#E8341C] text-white font-bold text-sm tracking-wide transition-all duration-200 hover:brightness-105 active:scale-95 cursor-pointer shadow-xs"
-            >
-              <span>Explore Selected Work</span>
-              <ArrowDown className="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5" />
-            </button>
-
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-2.5 max-w-md">
             <button
               type="button"
               onClick={() => handleScrollTo("contact")}
-              className="group flex items-center gap-2 px-5 py-3.5 rounded-2xl bg-[#FCFAF7] border border-[#D9D1C5] text-[#1A1614] font-semibold text-sm hover:border-[#1A1614] transition-all duration-150 active:scale-95 cursor-pointer"
+              className="flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-[#E8341C] text-white font-bold text-sm tracking-wide transition-all duration-150 hover:brightness-105 active:scale-[0.98] cursor-pointer shadow-xs"
             >
-              <span>Get in Touch</span>
-              <ArrowUpRight className="w-4 h-4 text-[#6B625A] group-hover:text-[#1A1614] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+              <span>Get a free quote</span>
+              <ArrowDown className="w-4 h-4" />
             </button>
+
+            <button
+              type="button"
+              onClick={() => handleScrollTo("projects")}
+              className="flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-[#FCFAF7] border border-[#D9D1C5] text-[#1A1614] font-semibold text-sm hover:border-[#1A1614] transition-all duration-150 active:scale-[0.98] cursor-pointer shadow-2xs"
+            >
+              <span>Explore selected work</span>
+            </button>
+          </div>
+
+          <p className="text-xs text-[#6B625A]">
+            Free, no commitment. Replies within 24 hours.
+          </p>
+        </motion.div>
+
+        {/* Mobile Photo Card (Rendered here on mobile right after CTAs, hidden on desktop where sidebar is sticky) */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, delay: 0.22, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="block lg:hidden mb-4"
+        >
+          <div className="rounded-3xl bg-[#FCFAF7] border border-[#D9D1C5] p-5 shadow-xs">
+            <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden bg-[#EAE3D6] border border-[#D9D1C5] mb-4">
+              <Image
+                src={personal.avatarUrl || "/profile.webp"}
+                alt={personal.name}
+                fill
+                priority
+                sizes="(max-width: 640px) 100vw, 400px"
+                quality={85}
+                className="object-cover object-top rounded-2xl"
+              />
+            </div>
+            <h2 className="font-display font-bold text-2xl text-[#1A1614] text-center tracking-tight leading-tight">
+              {personal.name}
+            </h2>
+            <p className="text-xs font-mono font-medium tracking-wider text-[#6B625A] uppercase text-center mt-1.5">
+              {personal.headlineRole}
+            </p>
           </div>
         </motion.div>
 
-        {/* Metrics Row */}
+        {/* Metrics / Stats Row */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.55, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="grid grid-cols-2 gap-3 sm:gap-4 max-w-md pt-6 border-t border-[#D9D1C5]"
+          className="grid grid-cols-2 gap-3 sm:gap-4 max-w-md pt-1"
         >
-          {personal.stats.map((stat, idx) => (
-            <div
-              key={idx}
-              className="p-5 rounded-2xl bg-[#FCFAF7] border border-[#D9D1C5] transition-all duration-150"
-            >
-              <div className="font-display font-black text-3xl sm:text-4xl text-[#1A1614] tracking-tight mb-1">
-                {stat.value}
-              </div>
-              <div className="text-[11px] font-mono font-bold tracking-wider text-[#1A1614] uppercase">
-                {stat.label}
-              </div>
-              <div className="text-[10px] font-mono tracking-wider text-[#6B625A] uppercase">
-                {stat.sublabel}
-              </div>
+          <div className="p-5 rounded-2xl bg-[#FCFAF7] border border-[#D9D1C5]">
+            <div className="font-display font-black text-3xl sm:text-4xl text-[#1A1614] tracking-tight mb-1">
+              2
             </div>
-          ))}
+            <div className="text-xs sm:text-sm text-[#6B625A] font-medium leading-snug">
+              Years of experience
+            </div>
+          </div>
+
+          <div className="p-5 rounded-2xl bg-[#FCFAF7] border border-[#D9D1C5]">
+            <div className="font-display font-black text-3xl sm:text-4xl text-[#1A1614] tracking-tight mb-1">
+              10+
+            </div>
+            <div className="text-xs sm:text-sm text-[#6B625A] font-medium leading-snug">
+              Projects delivered
+            </div>
+          </div>
         </motion.div>
       </div>
 
       {/* Editorial Marquee Ticker */}
-      <div className="w-full mt-14 lg:mt-20 py-3.5 bg-[#FAF7F2] border-y border-[#D9D1C5] overflow-hidden select-none">
+      <div className="w-full mt-12 lg:mt-16 py-3.5 bg-[#FAF7F2] border-y border-[#D9D1C5] overflow-hidden select-none">
         <div className="animate-marquee flex items-center whitespace-nowrap">
           {marqueeItems.concat(marqueeItems).map((item, idx) => (
             <div key={idx} className="flex items-center mx-4 group cursor-default">
