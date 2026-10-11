@@ -49,21 +49,32 @@ export async function POST(req: Request) {
       process.env.CONTACT_EMAIL || "yacine.silem.dev@gmail.com";
 
     if (!resendApiKey) {
-      console.warn("RESEND_API_KEY is not defined. Email logged locally in fallback mode.");
-      console.log({
-        clientName,
-        clientEmail,
-        selectedType,
-        selectedFeatures,
-        selectedBudget,
-        selectedTimeline,
-        additionalNotes,
-      });
+      if (process.env.NODE_ENV === "development") {
+        console.warn("RESEND_API_KEY is not defined. Email logged locally in development mode.");
+        console.log({
+          clientName,
+          clientEmail,
+          selectedType,
+          selectedFeatures,
+          selectedBudget,
+          selectedTimeline,
+          additionalNotes,
+        });
 
-      return NextResponse.json({
-        success: true,
-        message: "Inquiry received in local test mode.",
-      });
+        return NextResponse.json({
+          success: true,
+          message: "Inquiry received in local test mode.",
+        });
+      }
+
+      console.error("RESEND_API_KEY is missing in production environment variables.");
+      return NextResponse.json(
+        {
+          error:
+            "Email service is not yet configured in production. Please add RESEND_API_KEY in your hosting dashboard or email yacine.silem.dev@gmail.com directly.",
+        },
+        { status: 503 }
+      );
     }
 
     // Modern styled HTML email with clean editorial layout and direct Reply-To
