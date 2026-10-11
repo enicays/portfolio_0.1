@@ -91,8 +91,8 @@ export async function POST(req: Request) {
       <body>
         <div class="container">
           <div class="header">
-            <h1>New Client Inquiry</h1>
-            <p>Submitted via your portfolio contact form</p>
+            <h1>New Free Quote Request</h1>
+            <p>Submitted via your portfolio quote request form</p>
           </div>
           <div class="content">
             <div class="row">
@@ -112,10 +112,6 @@ export async function POST(req: Request) {
               <div class="value">${selectedFeatures}</div>
             </div>
             <div class="row">
-              <div class="label">Estimated Budget</div>
-              <div class="value">${selectedBudget}</div>
-            </div>
-            <div class="row">
               <div class="label">Target Timeline</div>
               <div class="value">${selectedTimeline}</div>
             </div>
@@ -125,7 +121,7 @@ export async function POST(req: Request) {
             </div>
           </div>
           <div class="footer">
-            <a href="mailto:${clientEmail}?subject=Re: Your Project Inquiry" class="reply-btn">Reply to ${clientName}</a>
+            <a href="mailto:${clientEmail}?subject=Re: Your Free Quote Request" class="reply-btn">Reply to ${clientName}</a>
           </div>
         </div>
       </body>
@@ -133,13 +129,12 @@ export async function POST(req: Request) {
     `;
 
     const plainText = `
-New Client Inquiry
-==================
+New Free Quote Request
+======================
 Client Name: ${clientName}
 Client Email: ${clientEmail}
 Project Type: ${selectedType}
 Features: ${selectedFeatures}
-Budget Range: ${selectedBudget}
 Timeline: ${selectedTimeline}
 
 Client Notes:
@@ -153,10 +148,10 @@ ${additionalNotes}
         Authorization: `Bearer ${resendApiKey}`,
       },
       body: JSON.stringify({
-        from: "Portfolio Inquiry <onboarding@resend.dev>",
+        from: "Portfolio Quote <onboarding@resend.dev>",
         to: [recipientEmail],
         reply_to: clientEmail,
-        subject: `[New Inquiry] ${clientName} • ${selectedType} (${selectedBudget})`,
+        subject: `[Free Quote Request] ${clientName} • ${selectedType} (${selectedTimeline})`,
         html: htmlEmail,
         text: plainText,
       }),
@@ -180,7 +175,7 @@ ${additionalNotes}
       {
         success: true,
         message:
-          "Your inquiry has been sent successfully! I will review it and reply within 24 to 48 hours.",
+          "Your quote request has been sent successfully! I will review your requirements and reply with a custom quote within 12 to 24 hours.",
         id: data.id,
       },
       { status: 200 }

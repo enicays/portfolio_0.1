@@ -24,15 +24,6 @@ const FEATURES_LIST = [
   "Logo / branding",
 ];
 
-const BUDGET_OPTIONS = [
-  "Under $1,000",
-  "$1,000 - $3,000",
-  "$3,000 - $5,000",
-  "$5,000 - $10,000",
-  "$10,000+",
-  "Not sure yet",
-];
-
 const TIMELINE_OPTIONS = [
   "As soon as possible",
   "Within 1 month",
@@ -43,11 +34,10 @@ const TIMELINE_OPTIONS = [
 
 export default function InquiryForm() {
   const [currentStep, setCurrentStep] = useState(0);
-  const totalSteps = 4;
+  const totalSteps = 3;
 
   const [projectType, setProjectType] = useState("");
   const [features, setFeatures] = useState<string[]>([]);
-  const [budget, setBudget] = useState("");
   const [timeline, setTimeline] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -64,6 +54,15 @@ export default function InquiryForm() {
     );
   };
 
+  const handleSelectProjectType = (type: string) => {
+    setProjectType(type);
+    setErrorMsg("");
+    // Give 200ms brief visual highlight so user sees selection register, then smoothly advance to step 2
+    setTimeout(() => {
+      setCurrentStep(1);
+    }, 200);
+  };
+
   const validateCurrentStep = (): boolean => {
     setErrorMsg("");
     setInvalidFields({});
@@ -75,7 +74,7 @@ export default function InquiryForm() {
       }
     }
 
-    if (currentStep === 3) {
+    if (currentStep === 2) {
       const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
       const newInvalids: { [key: string]: boolean } = {};
 
@@ -123,8 +122,7 @@ export default function InquiryForm() {
       email: email.trim(),
       projectType,
       features: features.length > 0 ? features.join(", ") : "None selected",
-      budget: budget || "Not specified",
-      timeline: timeline || "Not specified",
+      timeline: timeline || "Flexible",
       notes: notes.trim() || "None",
     };
 
@@ -141,7 +139,7 @@ export default function InquiryForm() {
 
       setIsSuccess(true);
     } catch {
-      setErrorMsg("Your inquiry didn't send. Check your connection and try again.");
+      setErrorMsg("Your request didn't send. Check your connection and try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -153,14 +151,14 @@ export default function InquiryForm() {
     <div className="inquiry-card shadow-2xl">
       {!isSuccess ? (
         <div>
-          <h2 className="inquiry-h2">Send an Inquiry</h2>
+          <h2 className="inquiry-h2">Get a Free Quote</h2>
           <p className="inquiry-sub">
-            Tell me what you want to build. I&apos;ll review it and reply with a quote.
+            Tell me what you want to build. I&apos;ll review your requirements and estimate the price for you.
           </p>
 
           {/* Progress bar */}
           <div className="inquiry-progress" aria-hidden="true">
-            {[0, 1, 2, 3].map((stepIdx) => (
+            {[0, 1, 2].map((stepIdx) => (
               <span
                 key={stepIdx}
                 className={stepIdx <= currentStep ? "done" : ""}
@@ -178,7 +176,7 @@ export default function InquiryForm() {
             }}
             noValidate
           >
-            {/* Step 1: Project Type */}
+            {/* Step 1: Project Type (Auto-advance on click) */}
             {currentStep === 0 && (
               <fieldset className="border-0 p-0 m-0">
                 <legend className="inquiry-legend">What are you building? *</legend>
@@ -190,10 +188,7 @@ export default function InquiryForm() {
                         name="projectType"
                         value={type}
                         checked={projectType === type}
-                        onChange={() => {
-                          setProjectType(type);
-                          setErrorMsg("");
-                        }}
+                        onChange={() => handleSelectProjectType(type)}
                       />
                       <span>{type}</span>
                     </label>
@@ -231,7 +226,7 @@ export default function InquiryForm() {
               </fieldset>
             )}
 
-            {/* Step 3: Budget and Timeline */}
+            {/* Step 3: Your Details & Timeline */}
             {currentStep === 2 && (
               <fieldset className="border-0 p-0 m-0">
                 <legend
@@ -243,64 +238,9 @@ export default function InquiryForm() {
                     clip: "rect(0 0 0 0)",
                   }}
                 >
-                  Budget and timeline
+                  Your details and timeline
                 </legend>
-                <div className="inquiry-field">
-                  <label className="inquiry-lbl" htmlFor="budget">
-                    Estimated project budget
-                  </label>
-                  <select
-                    id="budget"
-                    name="budget"
-                    value={budget}
-                    onChange={(e) => setBudget(e.target.value)}
-                    className="inquiry-select"
-                  >
-                    <option value="">Select a range</option>
-                    {BUDGET_OPTIONS.map((opt) => (
-                      <option key={opt} value={opt}>
-                        {opt}
-                      </option>
-                    ))}
-                  </select>
-                </div>
 
-                <div className="inquiry-field" style={{ marginBottom: 0 }}>
-                  <label className="inquiry-lbl" htmlFor="timeline">
-                    When do you need it?
-                  </label>
-                  <select
-                    id="timeline"
-                    name="timeline"
-                    value={timeline}
-                    onChange={(e) => setTimeline(e.target.value)}
-                    className="inquiry-select"
-                  >
-                    <option value="">Select a timeframe</option>
-                    {TIMELINE_OPTIONS.map((opt) => (
-                      <option key={opt} value={opt}>
-                        {opt}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </fieldset>
-            )}
-
-            {/* Step 4: Contact Details */}
-            {currentStep === 3 && (
-              <fieldset className="border-0 p-0 m-0">
-                <legend
-                  style={{
-                    position: "absolute",
-                    width: 1,
-                    height: 1,
-                    overflow: "hidden",
-                    clip: "rect(0 0 0 0)",
-                  }}
-                >
-                  Your details
-                </legend>
                 <div className="inquiry-row inquiry-field">
                   <div>
                     <label className="inquiry-lbl" htmlFor="inquiry-name">
@@ -351,16 +291,36 @@ export default function InquiryForm() {
                   </div>
                 </div>
 
+                <div className="inquiry-field">
+                  <label className="inquiry-lbl" htmlFor="timeline">
+                    Target timeline
+                  </label>
+                  <select
+                    id="timeline"
+                    name="timeline"
+                    value={timeline}
+                    onChange={(e) => setTimeline(e.target.value)}
+                    className="inquiry-select"
+                  >
+                    <option value="">Select a timeframe</option>
+                    {TIMELINE_OPTIONS.map((opt) => (
+                      <option key={opt} value={opt}>
+                        {opt}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
                 <div className="inquiry-field" style={{ marginBottom: 0 }}>
                   <label className="inquiry-lbl" htmlFor="inquiry-notes">
-                    Anything else I should know?
+                    Project details &amp; notes
                   </label>
                   <textarea
                     id="inquiry-notes"
                     name="notes"
                     value={notes}
                     onChange={(e) => setNotes(e.target.value)}
-                    placeholder="Links to sites you like, deadlines, or goals for the project..."
+                    placeholder="Tell me about your project goals, links to sites you like, or specific requirements..."
                     className="inquiry-textarea"
                   />
                 </div>
@@ -373,9 +333,9 @@ export default function InquiryForm() {
               </fieldset>
             )}
 
-            {/* Form Action Buttons */}
-            <div className="inquiry-actions">
-              {currentStep > 0 && (
+            {/* Form Action Buttons (Only shown for Step 2 and Step 3) */}
+            {currentStep > 0 && (
+              <div className="inquiry-actions">
                 <button
                   type="button"
                   onClick={handleBack}
@@ -383,53 +343,53 @@ export default function InquiryForm() {
                 >
                   Back
                 </button>
-              )}
 
-              <button
-                type="button"
-                onClick={handleNext}
-                disabled={isSubmitting}
-                className="inquiry-btn inquiry-btn-primary"
-              >
-                <span>
-                  {isSubmitting
-                    ? "Sending..."
-                    : currentStep === totalSteps - 1
-                    ? "Submit Project Inquiry"
-                    : "Continue"}
-                </span>
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  disabled={isSubmitting}
+                  className="inquiry-btn inquiry-btn-primary"
+                >
+                  <span>
+                    {isSubmitting
+                      ? "Sending..."
+                      : currentStep === totalSteps - 1
+                      ? "Get Free Quote"
+                      : "Continue"}
+                  </span>
 
-                {currentStep === totalSteps - 1 ? (
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M22 2L11 13" />
-                    <path d="M22 2l-7 20-4-9-9-4 20-7z" />
-                  </svg>
-                ) : (
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M5 12h14M13 6l6 6-6 6" />
-                  </svg>
-                )}
-              </button>
-            </div>
+                  {currentStep === totalSteps - 1 ? (
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M22 2L11 13" />
+                      <path d="M22 2l-7 20-4-9-9-4 20-7z" />
+                    </svg>
+                  ) : (
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                  )}
+                </button>
+              </div>
+            )}
           </form>
 
-          <p className="inquiry-reply-note">I reply within 24 to 48 hours.</p>
+          <p className="inquiry-reply-note">I reply within 12 to 24 hours.</p>
         </div>
       ) : (
         <div className="inquiry-success">
@@ -437,7 +397,7 @@ export default function InquiryForm() {
             <svg
               viewBox="0 0 24 24"
               fill="none"
-              stroke="#11140a"
+              stroke="#FFFFFF"
               strokeWidth="2.6"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -446,10 +406,10 @@ export default function InquiryForm() {
               <path d="M5 12.5l4.5 4.5L19 7.5" />
             </svg>
           </div>
-          <h3>Inquiry sent</h3>
+          <h3>Quote request sent!</h3>
           <p>
-            Thanks, <span className="text-[#f5f4f2] font-semibold">{firstName}</span>.
-            I&apos;ll review your project and email you a quote within 24 to 48 hours.
+            Thanks, <span className="text-[#1A1614] font-semibold">{firstName}</span>.
+            I&apos;ll review your project requirements and email you an estimated price and timeline breakdown within 12 to 24 hours.
           </p>
 
           <button
@@ -459,7 +419,6 @@ export default function InquiryForm() {
               setCurrentStep(0);
               setProjectType("");
               setFeatures([]);
-              setBudget("");
               setTimeline("");
               setName("");
               setEmail("");
@@ -467,7 +426,7 @@ export default function InquiryForm() {
             }}
             className="mt-6 px-5 py-2.5 rounded-xl bg-[#FCFAF7] border border-[#D9D1C5] text-xs font-mono text-[#1A1614] hover:border-[#E8341C] transition-colors cursor-pointer"
           >
-            Send another inquiry
+            Request another quote
           </button>
         </div>
       )}
