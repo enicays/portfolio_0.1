@@ -6,7 +6,11 @@ import { ArrowUp } from "lucide-react";
 
 export default function Footer() {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (window.__lenisSmooth) {
+      window.__lenisSmooth.scrollTo(0, { duration: 0.9 });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   return (

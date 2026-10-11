@@ -10,9 +10,20 @@ export default function Hero() {
   const { personal, marqueeItems } = portfolioData;
 
   const handleScrollTo = (id: string) => {
-    const elem = document.getElementById(id);
-    if (elem) {
-      const top = elem.getBoundingClientRect().top + window.scrollY - 90;
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
+    const targetId = id === "contact" && isMobile ? "quote-form" : id;
+    const elem = document.getElementById(targetId) || document.getElementById(id);
+    if (!elem) return;
+
+    const navbarOffset = -65;
+
+    if (window.__lenisSmooth) {
+      window.__lenisSmooth.scrollTo(elem, {
+        offset: navbarOffset,
+        duration: 0.9,
+      });
+    } else {
+      const top = elem.getBoundingClientRect().top + window.scrollY + navbarOffset;
       window.scrollTo({ top, behavior: "smooth" });
     }
   };

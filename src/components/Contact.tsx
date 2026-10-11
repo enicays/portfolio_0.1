@@ -21,7 +21,7 @@ export default function Contact() {
   );
 
   return (
-    <section id="contact" className="py-14 lg:py-20 relative scroll-mt-28 border-t border-[#D9D1C5]">
+    <section id="contact" className="pt-10 pb-14 sm:pt-14 sm:pb-16 lg:py-20 relative scroll-mt-24 border-t border-[#D9D1C5]">
       <div className="max-w-xl mx-auto w-full">
         {/* Section Header */}
         <motion.div
@@ -42,10 +42,12 @@ export default function Contact() {
 
         {/* Free Quote Form Card */}
         <motion.div
+          id="quote-form"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5, delay: 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="scroll-mt-20"
         >
           <InquiryForm />
         </motion.div>

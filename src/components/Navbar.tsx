@@ -47,14 +47,27 @@ export default function Navbar() {
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          const scrollPosition = window.scrollY + 160;
-          const sectionIds = navItems.map((item) => item.id);
+          // Bottom of page detection ensures contact is always active at the end
+          const isAtBottom =
+            window.innerHeight + window.scrollY >=
+            document.documentElement.scrollHeight - 60;
 
+          if (isAtBottom) {
+            setActiveSection("contact");
+            ticking = false;
+            return;
+          }
+
+          const sectionIds = navItems.map((item) => item.id);
           for (let i = sectionIds.length - 1; i >= 0; i--) {
             const el = document.getElementById(sectionIds[i]);
-            if (el && el.offsetTop <= scrollPosition) {
-              setActiveSection(sectionIds[i]);
-              break;
+            if (el) {
+              const rect = el.getBoundingClientRect();
+              // Trigger when section top enters near the upper third of screen
+              if (rect.top <= 200) {
+                setActiveSection(sectionIds[i]);
+                break;
+              }
             }
           }
           ticking = false;
@@ -71,9 +84,26 @@ export default function Navbar() {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const targetId = href.replace("#", "");
-    const elem = document.getElementById(targetId);
-    if (elem) {
-      const top = elem.getBoundingClientRect().top + window.scrollY - 90;
+
+    // On mobile screens, scroll directly to the quote form card so it lands right in view
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
+    const effectiveId =
+      targetId === "contact" && isMobile ? "quote-form" : targetId;
+
+    const elem =
+      document.getElementById(effectiveId) || document.getElementById(targetId);
+    if (!elem) return;
+
+    // Navbar height is 46-50px with 14-20px top margin (~65px total dock height)
+    const navbarOffset = -65;
+
+    if (window.__lenisSmooth) {
+      window.__lenisSmooth.scrollTo(elem, {
+        offset: navbarOffset,
+        duration: 0.9,
+      });
+    } else {
+      const top = elem.getBoundingClientRect().top + window.scrollY + navbarOffset;
       window.scrollTo({ top, behavior: "smooth" });
     }
   };
