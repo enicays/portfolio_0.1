@@ -22,6 +22,7 @@ export default function Projects() {
             sizes="(max-width: 640px) 112px, (max-width: 1024px) 176px, 224px"
             className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
             priority={project.featured}
+            quality={80}
           />
           {/* Subtle gradient vignette */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#181615]/85 via-black/20 to-transparent pointer-events-none" />
@@ -33,6 +34,8 @@ export default function Projects() {
                 ? "Algeria Post"
                 : project.id === "landing-page"
                 ? "DigitalyHub"
+                : project.id === "crm-system"
+                ? "Clinic Care"
                 : "Live Demo"}
             </span>
             <span className="px-1.5 py-0.5 rounded bg-[#E8341C] text-white text-[7px] sm:text-[8px] font-mono font-bold shadow-xs">
@@ -47,6 +50,8 @@ export default function Projects() {
                 ? "HR & Presence System"
                 : project.id === "landing-page"
                 ? "E-Commerce Showcase"
+                : project.id === "crm-system"
+                ? "Clinical EMR & Queue"
                 : project.category}
             </span>
             <span className="text-[7px] text-white/60">

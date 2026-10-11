@@ -154,6 +154,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   className="object-contain object-center"
                   sizes="(max-width: 768px) 100vw, 896px"
                   priority
+                  quality={85}
                 />
                 <a
                   href={project.screenshots[activeScreenshotIdx].url}
@@ -198,6 +199,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                         fill
                         className="object-cover object-top"
                         sizes="(max-width: 640px) 30vw, 260px"
+                        quality={75}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent flex items-end p-1.5 sm:p-2">
                         <span className="text-[9px] sm:text-[10px] font-mono font-medium text-white line-clamp-1 leading-tight">
