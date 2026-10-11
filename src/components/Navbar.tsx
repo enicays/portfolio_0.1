@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Home, Folder, Briefcase, Wrench, SquarePen } from "lucide-react";
+import { Home, Folder, Briefcase, SquarePen } from "lucide-react";
 
 interface NavItem {
   id: string;
@@ -29,12 +29,6 @@ const navItems: NavItem[] = [
     label: "Experience",
     href: "#experience",
     icon: Briefcase,
-  },
-  {
-    id: "tools",
-    label: "Tools",
-    href: "#tools",
-    icon: Wrench,
   },
   {
     id: "contact",
