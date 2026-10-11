@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { Project } from "@/data/portfolioData";
 import {
@@ -22,28 +22,51 @@ interface ProjectModalProps {
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   const [activeScreenshotIdx, setActiveScreenshotIdx] = useState(0);
+  const scrollBodyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setActiveScreenshotIdx(0);
+    // Scroll back to top whenever project changes
+    if (scrollBodyRef.current) {
+      scrollBodyRef.current.scrollTop = 0;
+    }
   }, [project?.id]);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
+
     if (project) {
       document.body.style.overflow = "hidden";
       window.addEventListener("keydown", handleKeyDown);
+      // Temporarily pause smooth scroll instance while modal is open
+      window.__lenisSmooth?.stop();
     }
+
     return () => {
       document.body.style.overflow = "unset";
       window.removeEventListener("keydown", handleKeyDown);
+      window.__lenisSmooth?.start();
     };
   }, [project, onClose]);
+
+  const handleModalWheel = (e: React.WheelEvent) => {
+    e.stopPropagation();
+    // If scrolling occurs outside the scrollable body (e.g. over header, footer, padding), forward delta to body
+    if (scrollBodyRef.current && !scrollBodyRef.current.contains(e.target as Node)) {
+      scrollBodyRef.current.scrollTop += e.deltaY;
+    }
+  };
 
   if (!project) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 overflow-y-auto">
+    <div
+      data-lenis-prevent
+      onWheel={handleModalWheel}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 overflow-y-auto"
+    >
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-[#1A1614]/50 backdrop-blur-xs transition-opacity animate-in fade-in duration-200"
@@ -51,9 +74,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
       />
 
       {/* Modal Dialog Content (Warm paper editorial modal) */}
-      <div className="relative w-full max-w-4xl bg-[#FCFAF7] border border-[#D9D1C5] rounded-3xl shadow-xl overflow-hidden z-10 my-auto animate-in fade-in zoom-in-95 duration-200 max-h-[90vh] flex flex-col text-[#1A1614]">
+      <div
+        data-lenis-prevent
+        className="relative w-full max-w-4xl bg-[#FCFAF7] border border-[#D9D1C5] rounded-3xl shadow-xl overflow-hidden z-10 my-auto animate-in fade-in zoom-in-95 duration-200 max-h-[90vh] flex flex-col text-[#1A1614]"
+      >
         {/* Top Header Bar */}
-        <div className="sticky top-0 z-20 flex items-center justify-between px-6 py-4 bg-[#FAF7F2] border-b border-[#D9D1C5]">
+        <div className="shrink-0 z-20 flex items-center justify-between px-6 py-4 bg-[#FAF7F2] border-b border-[#D9D1C5]">
           <div className="flex items-center gap-3">
             <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#6B625A]">
               {project.category}
@@ -74,7 +100,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         </div>
 
         {/* Scrollable Body */}
-        <div className="p-6 sm:p-8 overflow-y-auto space-y-8">
+        <div
+          ref={scrollBodyRef}
+          data-lenis-prevent
+          tabIndex={0}
+          className="flex-1 min-h-0 p-6 sm:p-8 overflow-y-auto overscroll-contain space-y-8 focus:outline-none"
+        >
           {/* Title & Headline */}
           <div>
             <h2 className="font-display font-black text-2xl sm:text-4xl text-[#1A1614] tracking-tight mb-2">
@@ -247,7 +278,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         </div>
 
         {/* Modal Bottom Footer Actions */}
-        <div className="sticky bottom-0 z-20 flex flex-wrap items-center justify-between gap-3 px-6 py-4 bg-[#FAF7F2] border-t border-[#D9D1C5]">
+        <div className="shrink-0 z-20 flex flex-wrap items-center justify-between gap-3 px-6 py-4 bg-[#FAF7F2] border-t border-[#D9D1C5]">
           <div className="text-xs text-[#6B625A] font-mono">
             Full-Stack Case Study breakdown
           </div>

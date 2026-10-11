@@ -3,6 +3,12 @@
 import React, { useEffect } from "react";
 import Lenis from "lenis";
 
+declare global {
+  interface Window {
+    __lenisSmooth?: Lenis;
+  }
+}
+
 export default function SmoothScrollProvider({
   children,
 }: {
@@ -24,7 +30,15 @@ export default function SmoothScrollProvider({
       smoothWheel: true,
       wheelMultiplier: 0.9,
       touchMultiplier: 1.5,
+      prevent: (node) => {
+        return (
+          node.hasAttribute?.("data-lenis-prevent") ||
+          Boolean(node.closest?.("[data-lenis-prevent]"))
+        );
+      },
     });
+
+    window.__lenisSmooth = lenis;
 
     let animationFrameId: number;
 
@@ -37,6 +51,7 @@ export default function SmoothScrollProvider({
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      delete window.__lenisSmooth;
       lenis.destroy();
     };
   }, []);
