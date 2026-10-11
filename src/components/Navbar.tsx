@@ -48,16 +48,24 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState<string>("hero");
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = navItems.map((item) => document.getElementById(item.id));
-      const scrollPosition = window.scrollY + 140;
+    let ticking = false;
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(navItems[i].id);
-          break;
-        }
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollPosition = window.scrollY + 160;
+          const sectionIds = navItems.map((item) => item.id);
+
+          for (let i = sectionIds.length - 1; i >= 0; i--) {
+            const el = document.getElementById(sectionIds[i]);
+            if (el && el.offsetTop <= scrollPosition) {
+              setActiveSection(sectionIds[i]);
+              break;
+            }
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
@@ -77,10 +85,10 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed top-3 sm:top-5 left-1/2 -translate-x-1/2 z-50 pointer-events-auto max-w-[calc(100vw-1.5rem)] sm:max-w-fit">
-      {/* Editorial Warm-Paper Responsive Floating Nav Bar */}
+    <header className="fixed top-3.5 sm:top-5 left-1/2 -translate-x-1/2 z-50 pointer-events-auto">
+      {/* Editorial Warm-Paper Silky Smooth Floating Dock */}
       <nav
-        className="relative flex items-center justify-center gap-0.5 sm:gap-2 px-1.5 sm:px-3 h-[46px] sm:h-[50px] rounded-2xl bg-[#FAF7F2]/95 border border-[#D9D1C5] backdrop-blur-md shadow-sm transition-all duration-200"
+        className="relative flex items-center justify-center gap-1 sm:gap-2 px-2 sm:px-3 h-[46px] sm:h-[50px] rounded-2xl bg-[#FAF7F2]/95 border border-[#D9D1C5] backdrop-blur-md shadow-sm select-none"
         aria-label="Main Navigation"
       >
         {navItems.map((item) => {
@@ -93,36 +101,47 @@ export default function Navbar() {
               href={item.href}
               onClick={(e) => handleNavClick(e, item.href)}
               aria-label={item.label}
-              className={`relative flex items-center rounded-xl text-xs sm:text-[13px] font-medium transition-all duration-200 select-none ${
+              className={`relative flex items-center justify-center sm:justify-start w-9 h-9 sm:w-auto sm:px-3.5 sm:py-1.5 rounded-xl text-xs sm:text-[13px] font-medium transition-colors duration-150 active:scale-95 ${
                 isActive
-                  ? "text-[#1A1614] bg-[#EAE4D9]/80 font-semibold px-2.5 sm:px-3.5 py-1.5 gap-1.5 sm:gap-2"
-                  : "text-[#6B625A] hover:text-[#1A1614] hover:bg-[#EAE4D9]/40 p-2 sm:px-3.5 sm:py-1.5 gap-2"
+                  ? "text-[#1A1614] font-semibold"
+                  : "text-[#6B625A] hover:text-[#1A1614]"
               }`}
             >
-              {/* Active pill spring background */}
+              {/* Hardware-accelerated sliding active pill */}
               {isActive && (
                 <motion.div
                   layoutId="activeNavBackground"
-                  className="absolute inset-0 rounded-xl bg-[#EAE4D9]/80 -z-10"
-                  transition={{ type: "spring", stiffness: 420, damping: 32 }}
+                  className="absolute inset-0 rounded-xl bg-[#EAE4D9]/85 -z-10"
+                  transition={{
+                    type: "spring",
+                    stiffness: 380,
+                    damping: 30,
+                    mass: 0.8,
+                  }}
                 />
               )}
 
+              {/* Icon */}
               <Icon
                 strokeWidth={isActive ? 2.2 : 1.8}
-                className={`w-4 h-4 shrink-0 transition-colors ${
+                className={`w-4 h-4 shrink-0 transition-colors duration-150 ${
                   isActive ? "text-[#E8341C]" : "text-[#6B625A]"
                 }`}
               />
 
-              {/* Responsive label: on mobile, active item expands with label; on desktop, all labels visible */}
-              <span className={isActive ? "inline" : "hidden sm:inline"}>
+              {/* Desktop text label (Hidden on mobile to preserve 100% stable width and eliminate animation jank) */}
+              <span className="hidden sm:inline ml-2">
                 {item.label}
               </span>
 
-              {/* Single accent active dot */}
+              {/* Desktop active accent dot */}
               {isActive && (
-                <span className="w-1.5 h-1.5 rounded-full bg-[#E8341C] shrink-0" />
+                <span className="hidden sm:inline w-1.5 h-1.5 rounded-full bg-[#E8341C] shrink-0 ml-1.5" />
+              )}
+
+              {/* Mobile active micro dot underneath */}
+              {isActive && (
+                <span className="sm:hidden absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#E8341C]" />
               )}
             </a>
           );
