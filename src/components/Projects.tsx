@@ -29,7 +29,11 @@ export default function Projects() {
           {/* Header badges */}
           <div className="absolute top-2 left-2 right-2 flex items-center justify-between pointer-events-none">
             <span className="px-1.5 py-0.5 rounded bg-black/70 backdrop-blur-xs text-white/95 text-[8px] sm:text-[9px] font-mono font-medium border border-white/10">
-              Algeria Post
+              {project.id === "hr-system"
+                ? "Algeria Post"
+                : project.id === "landing-page"
+                ? "DigitalyHub"
+                : "Live Demo"}
             </span>
             <span className="px-1.5 py-0.5 rounded bg-[#E8341C] text-white text-[7px] sm:text-[8px] font-mono font-bold shadow-xs">
               Live UI
@@ -38,8 +42,16 @@ export default function Projects() {
 
           {/* Footer note */}
           <div className="absolute bottom-1.5 left-2 right-2 flex items-center justify-between text-[8px] font-mono text-white/80 pointer-events-none">
-            <span className="truncate">HR &amp; Presence System</span>
-            <span className="text-[7px] text-white/60">3 Screens</span>
+            <span className="truncate">
+              {project.id === "hr-system"
+                ? "HR & Presence System"
+                : project.id === "landing-page"
+                ? "E-Commerce Showcase"
+                : project.category}
+            </span>
+            <span className="text-[7px] text-white/60">
+              {project.screenshots ? `${project.screenshots.length} Screens` : "Live UI"}
+            </span>
           </div>
         </div>
       );
