@@ -29,7 +29,7 @@ export default function Projects() {
           {/* Header badges */}
           <div className="absolute top-2 left-2 right-2 flex items-center justify-between pointer-events-none">
             <span className="px-1.5 py-0.5 rounded bg-black/70 backdrop-blur-xs text-white/95 text-[8px] sm:text-[9px] font-mono font-medium border border-white/10">
-              Algérie Poste
+              Algeria Post
             </span>
             <span className="px-1.5 py-0.5 rounded bg-[#E8341C] text-white text-[7px] sm:text-[8px] font-mono font-bold shadow-xs">
               Live UI

@@ -139,12 +139,12 @@ export const portfolioData: PortfolioData = {
   projects: [
     {
       id: "hr-system",
-      title: "Algérie Poste HR System",
+      title: "Algeria Post HR System",
       subtitle: "Personnel & Administrative Workflow System",
       category: "Full-Stack Enterprise System",
       year: "2024",
       featured: true,
-      summary: "A complete human resources and attendance tracking platform developed for Algérie Poste to automate employee leave workflows, daily attendance logs, and administrative oversight.",
+      summary: "A complete human resources and attendance tracking platform developed for Algeria Post to automate employee leave workflows, daily attendance logs, and administrative oversight.",
       tags: ["React", "Node.js", "Express", "PostgreSQL", "REST APIs", "Tailwind CSS"],
       metrics: [
         { label: "Leave Approvals", value: "100% digital" },
@@ -155,25 +155,25 @@ export const portfolioData: PortfolioData = {
       screenshots: [
         {
           url: "/projects/hr/leave-requests.webp",
-          title: "Gestion des Demandes de Congé",
-          caption: "Demandes de congés avec filtrage multi-critères (Statut, Département) et double niveau de validation administrative (Chef & Admin).",
+          title: "Leave & Absence Request Management",
+          caption: "Multi-tier approval workflow for employee leave requests with multi-criteria filtering (Status, Department) and dual administrative approval levels.",
         },
         {
           url: "/projects/hr/attendance-records.webp",
-          title: "Enregistrements & Registre de Présence",
-          caption: "Registre d'émargement dynamique avec suivi des heures d'arrivée/sortie, calcul automatique de la durée, alertes retards et export.",
+          title: "Attendance Records & Personnel Ledger",
+          caption: "Dynamic digital attendance registry tracking daily check-in/check-out timestamps, automated duration calculation, tardiness alerts, and data export.",
         },
         {
           url: "/projects/hr/attendance-summary.webp",
-          title: "Tableau de Bord & Indicateurs de Présence",
-          caption: "Synthèse quotidienne en temps réel présentant l'effectif global, les employés à l'heure, en retard et les absences par département.",
+          title: "Attendance Analytics Dashboard",
+          caption: "Real-time daily summary displaying total staff count, on-time arrivals, late arrivals, and absence metrics by department.",
         },
       ],
-      overview: "Designed and engineered for Algérie Poste as a comprehensive full-stack HR solution to modernize employee records, digitize approval chains, and provide real-time attendance analytics.",
+      overview: "Designed and engineered for Algeria Post as a comprehensive full-stack HR solution to modernize employee records, digitize approval chains, and provide real-time attendance analytics.",
       challenge: "Replacing slow, fragmented paper-based leave requests and manual attendance rosters while enforcing multi-tier role-based permissions across distinct postal divisions.",
       solution: "Engineered a robust full-stack web application with React and Express, backed by normalized PostgreSQL relational schemas, automated status transitions, and audit-ready data persistence.",
       architectureHighlights: [
-        "Automated leave approval lifecycle with multi-level validation hierarchy (Chef de Service & Admin)",
+        "Automated leave approval lifecycle with multi-level validation hierarchy (Department Supervisor & System Admin)",
         "Daily attendance tracking dashboard with instant punctuality categorization and record export",
         "Role-based access control (RBAC) guaranteeing data confidentiality and administrative integrity",
         "Normalized PostgreSQL database schemas with indexed queries for fast multi-department filtering",
