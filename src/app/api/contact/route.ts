@@ -175,7 +175,7 @@ ${additionalNotes}
       {
         success: true,
         message:
-          "Your quote request has been sent successfully! I will review your requirements and reply with a custom quote within 12 to 24 hours.",
+          "Your quote request has been sent successfully! I will review your requirements and reply with a custom quote within 24 hours.",
         id: data.id,
       },
       { status: 200 }
