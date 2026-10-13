@@ -38,7 +38,7 @@ export default function Hero() {
           transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
           className="mb-5 sm:mb-6 select-none"
         >
-          <h1 className="font-display font-black text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.6rem] tracking-tight leading-[0.95] sm:leading-[0.92] text-[#1A1614] uppercase">
+          <h1 className="font-display font-black text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.6rem] tracking-tight leading-[1.04] sm:leading-[0.98] lg:leading-[0.95] text-[#1A1614] uppercase">
             <span className="block">WEBSITES AND</span>
             <span className="block">APPS THAT BRING</span>
             <span className="block">IN CLIENTS.</span>
@@ -52,7 +52,7 @@ export default function Hero() {
           transition={{ duration: 0.55, delay: 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
           className="max-w-2xl mb-6 sm:mb-8"
         >
-          <p className="text-base sm:text-lg text-[#6B625A] font-normal leading-relaxed">
+          <p className="text-base sm:text-lg text-[#2E2824] font-medium leading-relaxed">
             I&apos;m Yacine, a full-stack developer. I build fast, reliable web apps, from first idea to launch.
           </p>
         </motion.div>
@@ -64,7 +64,7 @@ export default function Hero() {
           transition={{ duration: 0.55, delay: 0.16, ease: [0.21, 0.47, 0.32, 0.98] }}
           className="mb-8 lg:mb-10"
         >
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-2.5 max-w-md">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-3 max-w-md">
             <button
               type="button"
               onClick={() => handleScrollTo("contact")}
@@ -77,14 +77,15 @@ export default function Hero() {
             <button
               type="button"
               onClick={() => handleScrollTo("projects")}
-              className="flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-[#FCFAF7] border border-[#D9D1C5] text-[#1A1614] font-semibold text-sm hover:border-[#1A1614] transition-all duration-150 active:scale-[0.98] cursor-pointer shadow-2xs"
+              className="flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-[#FCFAF7] border-[1.5px] border-[#A89D8F] text-[#1A1614] font-bold text-sm hover:border-[#1A1614] hover:bg-white transition-all duration-150 active:scale-[0.98] cursor-pointer shadow-xs"
             >
               <span>Explore selected work</span>
             </button>
           </div>
 
-          <p className="text-xs text-[#6B625A]">
-            Free, no commitment. Replies within 24 hours.
+          <p className="text-xs sm:text-[13px] text-[#2E2824] font-medium flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#E8341C] shrink-0" />
+            <span>Free, no commitment. Replies within 24 hours.</span>
           </p>
         </motion.div>
 
@@ -122,23 +123,32 @@ export default function Hero() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.55, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="grid grid-cols-2 gap-3 sm:gap-4 max-w-sm lg:max-w-md mx-auto lg:mx-0 pt-1"
+          className="grid grid-cols-3 gap-2.5 sm:gap-3.5 max-w-sm sm:max-w-md lg:max-w-xl mx-auto lg:mx-0 pt-1"
         >
-          <div className="p-5 rounded-2xl bg-[#FCFAF7] border border-[#D9D1C5]">
-            <div className="font-display font-black text-3xl sm:text-4xl text-[#1A1614] tracking-tight mb-1">
-              2
+          <div className="p-3.5 sm:p-5 rounded-2xl bg-[#FCFAF7] border border-[#D9D1C5] shadow-2xs">
+            <div className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-[#1A1614] tracking-tight mb-1">
+              10+
             </div>
-            <div className="text-xs sm:text-sm text-[#6B625A] font-medium leading-snug">
-              Years of experience
+            <div className="text-[11px] sm:text-xs text-[#4A423B] font-semibold leading-snug">
+              Projects delivered
             </div>
           </div>
 
-          <div className="p-5 rounded-2xl bg-[#FCFAF7] border border-[#D9D1C5]">
-            <div className="font-display font-black text-3xl sm:text-4xl text-[#1A1614] tracking-tight mb-1">
-              10+
+          <div className="p-3.5 sm:p-5 rounded-2xl bg-[#FCFAF7] border border-[#D9D1C5] shadow-2xs">
+            <div className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-[#1A1614] tracking-tight mb-1">
+              &lt;24h
             </div>
-            <div className="text-xs sm:text-sm text-[#6B625A] font-medium leading-snug">
-              Projects delivered
+            <div className="text-[11px] sm:text-xs text-[#4A423B] font-semibold leading-snug">
+              Quote turnaround
+            </div>
+          </div>
+
+          <div className="p-3.5 sm:p-5 rounded-2xl bg-[#FCFAF7] border border-[#D9D1C5] shadow-2xs">
+            <div className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-[#1A1614] tracking-tight mb-1">
+              2+
+            </div>
+            <div className="text-[11px] sm:text-xs text-[#4A423B] font-semibold leading-snug">
+              Years experience
             </div>
           </div>
         </motion.div>
@@ -149,7 +159,7 @@ export default function Hero() {
         <div className="animate-marquee flex items-center whitespace-nowrap">
           {marqueeItems.concat(marqueeItems).map((item, idx) => (
             <div key={idx} className="flex items-center mx-4 group cursor-default">
-              <span className="font-display font-bold text-xs sm:text-sm tracking-widest text-[#6B625A] group-hover:text-[#1A1614] transition-colors uppercase">
+              <span className="font-display font-extrabold text-xs sm:text-sm tracking-widest text-[#2E2824] group-hover:text-[#1A1614] transition-colors uppercase">
                 {item}
               </span>
               <span className="mx-4 text-[#E8341C] text-xs font-bold">✦</span>
