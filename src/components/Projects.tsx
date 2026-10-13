@@ -26,22 +26,6 @@ export default function Projects() {
           {/* Subtle gradient vignette */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#181615]/85 via-black/20 to-transparent pointer-events-none" />
 
-          {/* Header badges (Solid opaque materials - no blur gimmick) */}
-          <div className="absolute top-2 left-2 right-2 flex items-center justify-between pointer-events-none">
-            <span className="px-1.5 py-0.5 rounded bg-[#1A1614] text-white/95 text-[8px] sm:text-[9px] font-mono font-medium border border-white/15">
-              {project.id === "hr-system"
-                ? "Algeria Post"
-                : project.id === "landing-page"
-                ? "DigitalyHub"
-                : project.id === "crm-system"
-                ? "Clinic Care"
-                : "Live Demo"}
-            </span>
-            <span className="px-1.5 py-0.5 rounded bg-[#E8341C] text-white text-[7px] sm:text-[8px] font-mono font-bold shadow-xs">
-              Live UI
-            </span>
-          </div>
-
           {/* Footer note */}
           <div className="absolute bottom-1.5 left-2 right-2 flex items-center justify-between text-[8px] font-mono text-white/80 pointer-events-none">
             <span className="truncate">
@@ -54,7 +38,7 @@ export default function Projects() {
                 : project.category}
             </span>
             <span className="text-[7px] text-white/60">
-              {project.screenshots ? `${project.screenshots.length} Screens` : "Live UI"}
+              {project.screenshots ? `${project.screenshots.length} Screens` : ""}
             </span>
           </div>
         </div>
@@ -73,9 +57,6 @@ export default function Projects() {
               <UsersIcon className="w-3 h-3 text-[#E8341C]" />
               <span className="text-[9px] sm:text-[10px] font-mono text-white/90 font-medium">HR Core</span>
             </div>
-            <span className="px-1.5 py-0.5 rounded bg-[#E8341C]/20 text-[#E8341C] text-[8px] font-mono font-semibold">
-              Live
-            </span>
           </div>
 
           {/* Mini Personnel Rows */}
