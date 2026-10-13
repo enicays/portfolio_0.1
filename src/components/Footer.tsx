@@ -2,7 +2,6 @@
 
 import React from "react";
 import { portfolioData } from "@/data/portfolioData";
-import { ArrowUp } from "lucide-react";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -36,7 +35,7 @@ export default function Footer() {
           </div>
 
           {/* System status pill */}
-          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-[#FCFAF7] border border-[#D9D1C5] text-[11px] font-mono text-[#6B625A]">
+          <div className="flex items-center gap-2 px-3 py-1 rounded-md bg-[#FCFAF7] border border-[#D9D1C5] text-[11px] font-mono text-[#6B625A]">
             <span className="w-1.5 h-1.5 rounded-full bg-[#E8341C]"></span>
             <span>All systems nominal</span>
           </div>
@@ -44,11 +43,11 @@ export default function Footer() {
           {/* Back to Top */}
           <button
             onClick={scrollToTop}
-            className="group flex items-center gap-2 px-4 py-2 rounded-full bg-[#FCFAF7] border border-[#D9D1C5] text-xs font-mono text-[#1A1614] hover:border-[#E8341C] hover:text-[#E8341C] transition-all cursor-pointer"
+            className="group flex items-center gap-2 px-4 py-2 rounded-md bg-[#FCFAF7] border border-[#D9D1C5] text-xs font-mono text-[#1A1614] hover:border-[#E8341C] hover:text-[#E8341C] transition-all cursor-pointer"
             aria-label="Back to top"
           >
             <span>Back to top</span>
-            <ArrowUp className="w-3.5 h-3.5 transition-transform duration-200 group-hover:-translate-y-0.5" />
+            <span className="font-bold text-sm leading-none transition-transform duration-200 group-hover:-translate-y-0.5">↑</span>
           </button>
         </div>
       </div>

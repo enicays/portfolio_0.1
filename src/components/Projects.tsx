@@ -4,8 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { portfolioData, Project } from "@/data/portfolioData";
 import ProjectModal from "./ProjectModal";
-import { ArrowUpRight, Users, TrendingUp, Sparkles } from "lucide-react";
-import { motion } from "framer-motion";
+import { UsersIcon, TrendingUpIcon } from "./Icons";
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -27,9 +26,9 @@ export default function Projects() {
           {/* Subtle gradient vignette */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#181615]/85 via-black/20 to-transparent pointer-events-none" />
 
-          {/* Header badges */}
+          {/* Header badges (Solid opaque materials - no blur gimmick) */}
           <div className="absolute top-2 left-2 right-2 flex items-center justify-between pointer-events-none">
-            <span className="px-1.5 py-0.5 rounded bg-black/70 backdrop-blur-xs text-white/95 text-[8px] sm:text-[9px] font-mono font-medium border border-white/10">
+            <span className="px-1.5 py-0.5 rounded bg-[#1A1614] text-white/95 text-[8px] sm:text-[9px] font-mono font-medium border border-white/15">
               {project.id === "hr-system"
                 ? "Algeria Post"
                 : project.id === "landing-page"
@@ -71,10 +70,10 @@ export default function Projects() {
           {/* Top header bar mockup */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1.5">
-              <Users className="w-3 h-3 text-[#E8341C]" />
+              <UsersIcon className="w-3 h-3 text-[#E8341C]" />
               <span className="text-[9px] sm:text-[10px] font-mono text-white/90 font-medium">HR Core</span>
             </div>
-            <span className="px-1.5 py-0.5 rounded-full bg-[#E8341C]/20 text-[#E8341C] text-[8px] font-mono font-semibold">
+            <span className="px-1.5 py-0.5 rounded bg-[#E8341C]/20 text-[#E8341C] text-[8px] font-mono font-semibold">
               Live
             </span>
           </div>
@@ -112,7 +111,7 @@ export default function Projects() {
           {/* Top pipeline bar mockup */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1.5">
-              <TrendingUp className="w-3 h-3 text-[#E8341C]" />
+              <TrendingUpIcon className="w-3 h-3 text-[#E8341C]" />
               <span className="text-[9px] sm:text-[10px] font-mono text-white/90 font-medium">Pipeline CRM</span>
             </div>
             <span className="text-[9px] font-mono font-bold text-white/80">+45% ARR</span>
@@ -154,16 +153,16 @@ export default function Projects() {
         {/* Top header mockup */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-1.5">
-            <Sparkles className="w-3 h-3 text-[#E8341C]" />
+            <span className="text-xs text-[#E8341C] leading-none">✦</span>
             <span className="text-[9px] sm:text-[10px] font-mono text-white/90 font-medium">Showcase UI</span>
           </div>
-          <span className="px-1.5 py-0.5 rounded-full bg-white/10 text-white/80 text-[8px] font-mono">
+          <span className="px-1.5 py-0.5 rounded bg-white/10 text-white/80 text-[8px] font-mono">
             60 FPS
           </span>
         </div>
 
-        {/* Central Bold Hero Banner (Matching Majd template in reference image) */}
-        <div className="p-2.5 rounded-xl bg-[#FCFAF7] text-[#1A1614] my-auto flex flex-col items-center justify-center text-center shadow-xs">
+        {/* Central Bold Hero Banner */}
+        <div className="p-2.5 rounded-md bg-[#FCFAF7] text-[#1A1614] my-auto flex flex-col items-center justify-center text-center shadow-xs">
           <span className="text-[8px] font-mono font-black tracking-widest text-[#E8341C] uppercase leading-none mb-1">
             ✦ HIGH CONVERTING
           </span>
@@ -183,39 +182,24 @@ export default function Projects() {
   return (
     <section id="projects" className="py-12 lg:py-18 relative scroll-mt-28">
       <div className="w-full">
-        {/* Section Heading (Matching Sawad reference: Bold RECENT + Muted PROJECTS) */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="mb-8 sm:mb-12 select-none"
-        >
+        {/* Section Heading (Matching Sawad reference: Bold RECENT + Muted PROJECTS - rendered immediately) */}
+        <div className="mb-8 sm:mb-12 select-none">
           <h2 className="font-display font-black text-5xl sm:text-7xl lg:text-[6.5rem] tracking-tight leading-[0.88] uppercase">
             <span className="block text-[#1A1614]">RECENT</span>
             <span className="block text-[#D9D1C5]">PROJECTS</span>
           </h2>
-        </motion.div>
+        </div>
 
-        {/* Vertical Stack of Horizontal Cards (Matching Screenshot Layout) */}
+        {/* Vertical Stack of Horizontal Cards */}
         <div className="space-y-4 sm:space-y-5">
-          {projects.map((project, idx) => (
-            <motion.div
+          {projects.map((project) => (
+            <div
               key={project.id}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{
-                duration: 0.5,
-                delay: idx * 0.08,
-                ease: [0.21, 0.47, 0.32, 0.98],
-              }}
-              whileHover={{ y: -3, transition: { duration: 0.2 } }}
               onClick={() => setSelectedProject(project)}
-              className="group relative flex items-center justify-between p-3.5 sm:p-5 lg:p-6 rounded-3xl bg-[#FCFAF7] border border-[#D9D1C5] hover:border-[#E8341C]/40 hover:bg-[#FAF7F2] transition-all duration-200 cursor-pointer shadow-xs"
+              className="group relative flex items-center justify-between p-3.5 sm:p-5 lg:p-6 rounded-lg bg-[#FCFAF7] border border-[#D9D1C5] hover:border-[#E8341C]/40 hover:bg-[#FAF7F2] hover:-translate-y-0.5 transition-all duration-200 cursor-pointer shadow-xs"
             >
               {/* Left: Thumbnail Preview Container */}
-              <div className="relative w-28 h-24 sm:w-44 sm:h-36 lg:w-56 lg:h-38 rounded-2xl overflow-hidden shrink-0 border border-[#D9D1C5] shadow-sm">
+              <div className="relative w-28 h-24 sm:w-44 sm:h-36 lg:w-56 lg:h-38 rounded-md overflow-hidden shrink-0 border border-[#D9D1C5] shadow-sm">
                 {renderProjectThumbnail(project)}
               </div>
 
@@ -229,11 +213,13 @@ export default function Projects() {
                 </p>
               </div>
 
-              {/* Right: Diagonal Action Arrow (Red accent hover) */}
+              {/* Right: Diagonal Action Arrow (Clean typographic hairline) */}
               <div className="shrink-0 p-2 sm:p-3 text-[#6B625A] group-hover:text-[#E8341C] transition-colors">
-                <ArrowUpRight className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <span className="text-xl sm:text-2xl font-light leading-none transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 inline-block">
+                  ↗
+                </span>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

@@ -1,8 +1,5 @@
-"use client";
-
 import React from "react";
 import { portfolioData } from "@/data/portfolioData";
-import { motion } from "framer-motion";
 
 export default function Experience() {
   const { experience } = portfolioData;
@@ -10,35 +7,21 @@ export default function Experience() {
   return (
     <section id="experience" className="py-14 lg:py-20 relative scroll-mt-28 border-t border-[#D9D1C5]">
       <div className="w-full">
-        {/* Section Heading (Plain, unformulaic typography - no eyebrow, no two-tone) */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="max-w-2xl mb-12 sm:mb-16"
-        >
+        {/* Section Heading (Plain, unformulaic typography - rendered immediately) */}
+        <div className="max-w-2xl mb-12 sm:mb-16">
           <h2 className="font-display font-black text-3xl sm:text-5xl lg:text-6xl text-[#1A1614] tracking-tight uppercase">
             Work Experience
           </h2>
           <p className="text-sm sm:text-base text-[#6B625A] mt-3 font-normal leading-relaxed">
             Practical experience delivering production-ready web applications, e-commerce stores, and enterprise management tools.
           </p>
-        </motion.div>
+        </div>
 
         {/* Editorial Plain List Layout (Varied from bento cards - clean hairline rules & typography) */}
         <div className="divide-y divide-[#D9D1C5]">
-          {experience.map((item, idx) => (
-            <motion.div
+          {experience.map((item) => (
+            <div
               key={item.id}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{
-                duration: 0.55,
-                delay: idx * 0.1,
-                ease: [0.21, 0.47, 0.32, 0.98],
-              }}
               className="py-10 first:pt-0 last:pb-0"
             >
               {/* Header row: Role, Company, Period */}
@@ -84,7 +67,7 @@ export default function Experience() {
                 <span className="font-semibold text-[#1A1614] mr-2">Core Stack:</span>
                 {item.techStack.join(" • ")}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

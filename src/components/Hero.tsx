@@ -3,8 +3,6 @@
 import React from "react";
 import Image from "next/image";
 import { portfolioData } from "@/data/portfolioData";
-import { ArrowDown } from "lucide-react";
-import { motion } from "framer-motion";
 
 export default function Hero() {
   const { personal, marqueeItems } = portfolioData;
@@ -31,53 +29,38 @@ export default function Hero() {
   return (
     <section id="hero" className="relative pt-0 pb-12 lg:pb-16 scroll-mt-28">
       <div className="w-full relative z-10">
-        {/* Main Value Proposition Headline */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="mb-5 sm:mb-6 select-none"
-        >
+        {/* Main Value Proposition Headline (Rendered immediately - no template fade-up) */}
+        <div className="mb-5 sm:mb-6 select-none">
           <h1 className="font-display font-black text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.6rem] tracking-tight leading-[1.04] sm:leading-[0.98] lg:leading-[0.95] text-[#1A1614] uppercase">
             <span className="block">WEBSITES AND</span>
             <span className="block">APPS THAT BRING</span>
             <span className="block">IN CLIENTS.</span>
           </h1>
-        </motion.div>
+        </div>
 
         {/* Intro Subtitle */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="max-w-2xl mb-6 sm:mb-8"
-        >
+        <div className="max-w-2xl mb-6 sm:mb-8">
           <p className="text-base sm:text-lg text-[#2E2824] font-medium leading-relaxed">
             I&apos;m Yacine, a full-stack developer. I build fast, reliable web apps, from first idea to launch.
           </p>
-        </motion.div>
+        </div>
 
         {/* Primary CTAs & Microcopy */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.16, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="mb-8 lg:mb-10"
-        >
+        <div className="mb-8 lg:mb-10">
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-3 max-w-md">
             <button
               type="button"
               onClick={() => handleScrollTo("contact")}
-              className="flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-[#E8341C] text-white font-bold text-sm tracking-wide transition-all duration-150 hover:brightness-105 active:scale-[0.98] cursor-pointer shadow-xs"
+              className="group flex items-center justify-center gap-2 px-6 py-4 rounded-md bg-[#E8341C] text-white font-bold text-sm tracking-wide transition-all duration-150 hover:brightness-105 active:scale-[0.98] cursor-pointer shadow-xs"
             >
               <span>Get a free quote</span>
-              <ArrowDown className="w-4 h-4" />
+              <span className="font-bold text-base leading-none transition-transform duration-150 group-hover:translate-y-0.5">↓</span>
             </button>
 
             <button
               type="button"
               onClick={() => handleScrollTo("projects")}
-              className="flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-[#FCFAF7] border-[1.5px] border-[#A89D8F] text-[#1A1614] font-bold text-sm hover:border-[#1A1614] hover:bg-white transition-all duration-150 active:scale-[0.98] cursor-pointer shadow-xs"
+              className="flex items-center justify-center gap-2 px-6 py-4 rounded-md bg-[#FCFAF7] border-[1.5px] border-[#A89D8F] text-[#1A1614] font-bold text-sm hover:border-[#1A1614] hover:bg-white transition-all duration-150 active:scale-[0.98] cursor-pointer shadow-xs"
             >
               <span>Explore selected work</span>
             </button>
@@ -87,17 +70,12 @@ export default function Hero() {
             <span className="w-1.5 h-1.5 rounded-full bg-[#E8341C] shrink-0" />
             <span>Free, no commitment. Replies within 24 hours.</span>
           </p>
-        </motion.div>
+        </div>
 
         {/* Mobile Photo Card (Rendered here on mobile right after CTAs, hidden on desktop where sidebar is sticky) */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.22, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="block lg:hidden mb-6 max-w-sm mx-auto"
-        >
-          <div className="rounded-3xl bg-[#FCFAF7] border border-[#D9D1C5] p-5 shadow-xs">
-            <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden bg-[#EAE3D6] border border-[#D9D1C5] mb-4">
+        <div className="block lg:hidden mb-6 max-w-sm mx-auto">
+          <div className="rounded-lg bg-[#FCFAF7] border border-[#D9D1C5] p-5 shadow-xs">
+            <div className="relative w-full aspect-[3/4] rounded-md overflow-hidden bg-[#EAE3D6] border border-[#D9D1C5] mb-4">
               <Image
                 src={personal.avatarUrl || "/profile.webp"}
                 alt={personal.name}
@@ -105,7 +83,7 @@ export default function Hero() {
                 priority
                 sizes="(max-width: 640px) 100vw, 380px"
                 quality={85}
-                className="object-cover object-top rounded-2xl"
+                className="object-cover object-top rounded-md"
               />
             </div>
             <h2 className="font-display font-bold text-2xl text-[#1A1614] text-center tracking-tight leading-tight">
@@ -115,17 +93,11 @@ export default function Hero() {
               {personal.headlineRole}
             </p>
           </div>
-        </motion.div>
+        </div>
 
         {/* Metrics / Stats Row */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.55, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="grid grid-cols-3 gap-2.5 sm:gap-3.5 max-w-sm sm:max-w-md lg:max-w-xl mx-auto lg:mx-0 pt-1"
-        >
-          <div className="p-3.5 sm:p-5 rounded-2xl bg-[#FCFAF7] border border-[#D9D1C5] shadow-2xs">
+        <div className="grid grid-cols-3 gap-2.5 sm:gap-3.5 max-w-sm sm:max-w-md lg:max-w-xl mx-auto lg:mx-0 pt-1">
+          <div className="p-3.5 sm:p-5 rounded-lg bg-[#FCFAF7] border border-[#D9D1C5] shadow-2xs">
             <div className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-[#1A1614] tracking-tight mb-1">
               10+
             </div>
@@ -134,7 +106,7 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="p-3.5 sm:p-5 rounded-2xl bg-[#FCFAF7] border border-[#D9D1C5] shadow-2xs">
+          <div className="p-3.5 sm:p-5 rounded-lg bg-[#FCFAF7] border border-[#D9D1C5] shadow-2xs">
             <div className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-[#1A1614] tracking-tight mb-1">
               &lt;24h
             </div>
@@ -143,7 +115,7 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="p-3.5 sm:p-5 rounded-2xl bg-[#FCFAF7] border border-[#D9D1C5] shadow-2xs">
+          <div className="p-3.5 sm:p-5 rounded-lg bg-[#FCFAF7] border border-[#D9D1C5] shadow-2xs">
             <div className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-[#1A1614] tracking-tight mb-1">
               2+
             </div>
@@ -151,7 +123,7 @@ export default function Hero() {
               Years experience
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
 
       {/* Editorial Marquee Ticker */}

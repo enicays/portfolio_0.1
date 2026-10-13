@@ -2,7 +2,12 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Home, Folder, Briefcase, SquarePen } from "lucide-react";
+import {
+  NavHomeIcon,
+  NavProjectsIcon,
+  NavExperienceIcon,
+  NavContactIcon,
+} from "./Icons";
 
 interface NavItem {
   id: string;
@@ -16,25 +21,25 @@ const navItems: NavItem[] = [
     id: "hero",
     label: "Home",
     href: "#hero",
-    icon: Home,
+    icon: NavHomeIcon,
   },
   {
     id: "projects",
     label: "Projects",
     href: "#projects",
-    icon: Folder,
+    icon: NavProjectsIcon,
   },
   {
     id: "experience",
     label: "Experience",
     href: "#experience",
-    icon: Briefcase,
+    icon: NavExperienceIcon,
   },
   {
     id: "contact",
     label: "Contact",
     href: "#contact",
-    icon: SquarePen,
+    icon: NavContactIcon,
   },
 ];
 
@@ -110,9 +115,9 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-3.5 sm:top-5 left-1/2 -translate-x-1/2 z-50 pointer-events-auto">
-      {/* Editorial Warm-Paper Silky Smooth Floating Dock */}
+      {/* Editorial Warm-Paper Silky Smooth Floating Dock (Solid opaque, no blur gimmick) */}
       <nav
-        className="relative flex items-center justify-center gap-1 sm:gap-2 px-2 sm:px-3 h-[46px] sm:h-[50px] rounded-2xl bg-[#FAF7F2]/95 border border-[#D9D1C5] backdrop-blur-md shadow-sm select-none"
+        className="relative flex items-center justify-center gap-1 sm:gap-2 px-2 sm:px-3 h-[46px] sm:h-[50px] rounded-lg bg-[#FAF7F2] border border-[#D9D1C5] shadow-xs select-none"
         aria-label="Main Navigation"
       >
         {navItems.map((item) => {
@@ -125,7 +130,7 @@ export default function Navbar() {
               href={item.href}
               onClick={(e) => handleNavClick(e, item.href)}
               aria-label={item.label}
-              className={`relative flex items-center justify-center sm:justify-start w-9 h-9 sm:w-auto sm:px-3.5 sm:py-1.5 rounded-xl text-xs sm:text-[13px] font-medium transition-colors duration-150 active:scale-95 ${
+              className={`relative flex items-center justify-center sm:justify-start w-9 h-9 sm:w-auto sm:px-3.5 sm:py-1.5 rounded-md text-xs sm:text-[13px] font-medium transition-colors duration-150 active:scale-95 ${
                 isActive
                   ? "text-[#1A1614] font-semibold"
                   : "text-[#6B625A] hover:text-[#1A1614]"
@@ -135,7 +140,7 @@ export default function Navbar() {
               {isActive && (
                 <motion.div
                   layoutId="activeNavBackground"
-                  className="absolute inset-0 rounded-xl bg-[#EAE4D9]/85 -z-10"
+                  className="absolute inset-0 rounded-md bg-[#EAE4D9]/85 -z-10"
                   transition={{
                     type: "spring",
                     stiffness: 380,

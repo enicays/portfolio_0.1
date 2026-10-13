@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Check, ArrowRight, Send, Loader2 } from "lucide-react";
+import { CheckIcon, ArrowRightIcon, SpinnerIcon } from "./Icons";
 
 const PROJECT_TYPES = [
   "Portfolio",
@@ -149,7 +149,7 @@ export default function InquiryForm() {
   const firstName = name.trim().split(" ")[0] || "there";
 
   return (
-    <div className="w-full bg-[#FCFAF7] border border-[#D9D1C5] rounded-[28px] p-6 sm:p-9 shadow-md transition-all">
+    <div className="w-full bg-[#FCFAF7] border border-[#D9D1C5] rounded-lg p-6 sm:p-9 shadow-md transition-all">
       {!isSuccess ? (
         <div>
           {/* Card Header */}
@@ -189,7 +189,7 @@ export default function InquiryForm() {
                     return (
                       <label
                         key={type}
-                        className={`relative flex items-center gap-3 p-3.5 rounded-2xl border transition-all cursor-pointer select-none ${
+                        className={`relative flex items-center gap-3 p-3.5 rounded-md border transition-all cursor-pointer select-none ${
                           isSelected
                             ? "bg-[#FAF7F2] border-[#E8341C] shadow-2xs"
                             : "bg-[#FAF7F2] border-[#D9D1C5] hover:border-[#A89F93]"
@@ -249,7 +249,7 @@ export default function InquiryForm() {
                     return (
                       <label
                         key={feat}
-                        className={`relative flex items-center gap-3 p-3 rounded-xl border transition-all cursor-pointer select-none ${
+                        className={`relative flex items-center gap-3 p-3 rounded-md border transition-all cursor-pointer select-none ${
                           isChecked
                             ? "bg-[#FAF7F2] border-[#E8341C] shadow-2xs"
                             : "bg-[#FAF7F2] border-[#D9D1C5] hover:border-[#A89F93]"
@@ -271,7 +271,7 @@ export default function InquiryForm() {
                           }`}
                         >
                           {isChecked && (
-                            <Check className="w-3 h-3 text-white stroke-[2.5]" />
+                            <CheckIcon className="w-3 h-3 text-white" />
                           )}
                         </span>
                         <span className="text-sm font-medium text-[#1A1614]">
@@ -286,7 +286,7 @@ export default function InquiryForm() {
                   <button
                     type="button"
                     onClick={handleBack}
-                    className="px-5 py-3 rounded-xl border border-[#D9D1C5] hover:border-[#1A1614] text-sm font-medium text-[#1A1614] transition-colors cursor-pointer"
+                    className="px-5 py-3 rounded-md border border-[#D9D1C5] hover:border-[#1A1614] text-sm font-medium text-[#1A1614] transition-colors cursor-pointer"
                   >
                     Back
                   </button>
@@ -294,10 +294,10 @@ export default function InquiryForm() {
                   <button
                     type="button"
                     onClick={handleNext}
-                    className="flex-1 flex items-center justify-center gap-2 py-3 px-6 rounded-xl bg-[#E8341C] hover:brightness-105 text-white font-bold text-sm transition-all cursor-pointer shadow-xs active:translate-y-px"
+                    className="flex-1 flex items-center justify-center gap-2 py-3 px-6 rounded-md bg-[#E8341C] hover:brightness-105 text-white font-bold text-sm transition-all cursor-pointer shadow-xs active:translate-y-px"
                   >
                     <span>Continue</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRightIcon className="w-4 h-4" />
                   </button>
                 </div>
 
@@ -336,7 +336,7 @@ export default function InquiryForm() {
                       }}
                       placeholder="Sarah Connor"
                       autoComplete="name"
-                      className={`w-full bg-[#FAF7F2] border rounded-xl text-sm text-[#1A1614] p-3 transition-all focus:outline-none focus:border-[#E8341C] focus:ring-2 focus:ring-[#E8341C]/15 ${
+                      className={`w-full bg-[#FAF7F2] border rounded-md text-sm text-[#1A1614] p-3 transition-all focus:outline-none focus:border-[#E8341C] focus:ring-2 focus:ring-[#E8341C]/15 ${
                         invalidFields.name ? "border-[#E8341C]" : "border-[#D9D1C5]"
                       }`}
                     />
@@ -363,7 +363,7 @@ export default function InquiryForm() {
                       }}
                       placeholder="sarah@company.com"
                       autoComplete="email"
-                      className={`w-full bg-[#FAF7F2] border rounded-xl text-sm text-[#1A1614] p-3 transition-all focus:outline-none focus:border-[#E8341C] focus:ring-2 focus:ring-[#E8341C]/15 ${
+                      className={`w-full bg-[#FAF7F2] border rounded-md text-sm text-[#1A1614] p-3 transition-all focus:outline-none focus:border-[#E8341C] focus:ring-2 focus:ring-[#E8341C]/15 ${
                         invalidFields.email ? "border-[#E8341C]" : "border-[#D9D1C5]"
                       }`}
                     />
@@ -382,7 +382,7 @@ export default function InquiryForm() {
                     name="timeline"
                     value={timeline}
                     onChange={(e) => setTimeline(e.target.value)}
-                    className="w-full bg-[#FAF7F2] border border-[#D9D1C5] rounded-xl text-sm text-[#1A1614] p-3 transition-all focus:outline-none focus:border-[#E8341C] focus:ring-2 focus:ring-[#E8341C]/15 cursor-pointer"
+                    className="w-full bg-[#FAF7F2] border border-[#D9D1C5] rounded-md text-sm text-[#1A1614] p-3 transition-all focus:outline-none focus:border-[#E8341C] focus:ring-2 focus:ring-[#E8341C]/15 cursor-pointer"
                   >
                     <option value="">Select a timeframe</option>
                     {TIMELINE_OPTIONS.map((opt) => (
@@ -407,7 +407,7 @@ export default function InquiryForm() {
                     onChange={(e) => setNotes(e.target.value)}
                     rows={3}
                     placeholder="Tell me about your project goals, links to sites you like, or specific requirements..."
-                    className="w-full bg-[#FAF7F2] border border-[#D9D1C5] rounded-xl text-sm text-[#1A1614] p-3 transition-all focus:outline-none focus:border-[#E8341C] focus:ring-2 focus:ring-[#E8341C]/15 resize-y"
+                    className="w-full bg-[#FAF7F2] border border-[#D9D1C5] rounded-md text-sm text-[#1A1614] p-3 transition-all focus:outline-none focus:border-[#E8341C] focus:ring-2 focus:ring-[#E8341C]/15 resize-y"
                   />
                 </div>
 
@@ -421,7 +421,7 @@ export default function InquiryForm() {
                   <button
                     type="button"
                     onClick={handleBack}
-                    className="px-5 py-3 rounded-xl border border-[#D9D1C5] hover:border-[#1A1614] text-sm font-medium text-[#1A1614] transition-colors cursor-pointer"
+                    className="px-5 py-3 rounded-md border border-[#D9D1C5] hover:border-[#1A1614] text-sm font-medium text-[#1A1614] transition-colors cursor-pointer"
                   >
                     Back
                   </button>
@@ -429,17 +429,17 @@ export default function InquiryForm() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="flex-1 flex items-center justify-center gap-2 py-3 px-6 rounded-xl bg-[#E8341C] hover:brightness-105 text-white font-bold text-sm transition-all cursor-pointer shadow-xs active:translate-y-px disabled:opacity-60"
+                    className="flex-1 flex items-center justify-center gap-2 py-3 px-6 rounded-md bg-[#E8341C] hover:brightness-105 text-white font-bold text-sm transition-all cursor-pointer shadow-xs active:translate-y-px disabled:opacity-60"
                   >
                     {isSubmitting ? (
                       <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <SpinnerIcon className="w-4 h-4 animate-spin" />
                         <span>Sending...</span>
                       </>
                     ) : (
                       <>
                         <span>Get Free Quote</span>
-                        <Send className="w-4 h-4" />
+                        <ArrowRightIcon className="w-4 h-4" />
                       </>
                     )}
                   </button>
@@ -454,8 +454,8 @@ export default function InquiryForm() {
         </div>
       ) : (
         <div className="text-center py-6">
-          <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-[#E8341C] flex items-center justify-center text-white">
-            <Check className="w-7 h-7 stroke-[2.5]" />
+          <div className="w-12 h-12 mx-auto mb-4 rounded-lg bg-[#E8341C] flex items-center justify-center text-white">
+            <CheckIcon className="w-6 h-6 text-white" />
           </div>
           <h4 className="font-display font-bold text-2xl text-[#1A1614] mb-2">
             Quote request sent!
@@ -476,7 +476,7 @@ export default function InquiryForm() {
               setEmail("");
               setNotes("");
             }}
-            className="mt-6 px-5 py-2.5 rounded-xl bg-[#FAF7F2] border border-[#D9D1C5] text-xs font-mono text-[#1A1614] hover:border-[#E8341C] transition-colors cursor-pointer"
+            className="mt-6 px-5 py-2.5 rounded-md bg-[#FAF7F2] border border-[#D9D1C5] text-xs font-mono text-[#1A1614] hover:border-[#E8341C] transition-colors cursor-pointer"
           >
             Request another quote
           </button>

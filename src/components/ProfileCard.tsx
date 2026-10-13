@@ -3,9 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { portfolioData } from "@/data/portfolioData";
-import { Mail } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "./Icons";
-import { motion } from "framer-motion";
+import { GithubIcon, LinkedinIcon, MailIcon } from "./Icons";
 
 export default function ProfileCard() {
   const { personal } = portfolioData;
@@ -16,14 +14,9 @@ export default function ProfileCard() {
 
   return (
     <aside className="w-full max-w-[340px] mx-auto select-none">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-        className="relative w-full rounded-3xl bg-[#FCFAF7] text-[#1A1614] p-5 sm:p-6 border border-[#D9D1C5] shadow-xs flex flex-col items-center"
-      >
+      <div className="relative w-full rounded-lg bg-[#FCFAF7] text-[#1A1614] p-5 sm:p-6 border border-[#D9D1C5] shadow-xs flex flex-col items-center">
         {/* Profile Picture Container */}
-        <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden bg-[#EAE3D6] border border-[#D9D1C5]">
+        <div className="relative w-full aspect-[3/4] rounded-md overflow-hidden bg-[#EAE3D6] border border-[#D9D1C5]">
           <Image
             src={personal.avatarUrl || "/profile.webp"}
             alt={personal.name}
@@ -31,7 +24,7 @@ export default function ProfileCard() {
             priority
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 340px, 300px"
             quality={85}
-            className="object-cover object-top rounded-2xl transition-transform duration-500 hover:scale-105"
+            className="object-cover object-top rounded-md transition-transform duration-500 hover:scale-105"
           />
         </div>
 
@@ -51,7 +44,7 @@ export default function ProfileCard() {
             href={githubLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2.5 rounded-xl bg-[#FAF7F2] border border-[#D9D1C5] text-[#1A1614] hover:text-[#E8341C] hover:border-[#E8341C]/40 hover:bg-white transition-all duration-150"
+            className="p-2.5 rounded-md bg-[#FAF7F2] border border-[#D9D1C5] text-[#1A1614] hover:text-[#E8341C] hover:border-[#E8341C]/40 hover:bg-white transition-all duration-150"
             aria-label="GitHub Profile"
           >
             <GithubIcon className="w-4 h-4" />
@@ -61,7 +54,7 @@ export default function ProfileCard() {
             href={linkedinLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2.5 rounded-xl bg-[#FAF7F2] border border-[#D9D1C5] text-[#1A1614] hover:text-[#E8341C] hover:border-[#E8341C]/40 hover:bg-white transition-all duration-150"
+            className="p-2.5 rounded-md bg-[#FAF7F2] border border-[#D9D1C5] text-[#1A1614] hover:text-[#E8341C] hover:border-[#E8341C]/40 hover:bg-white transition-all duration-150"
             aria-label="LinkedIn Profile"
           >
             <LinkedinIcon className="w-4 h-4" />
@@ -69,13 +62,13 @@ export default function ProfileCard() {
 
           <a
             href={emailLink}
-            className="p-2.5 rounded-xl bg-[#FAF7F2] border border-[#D9D1C5] text-[#1A1614] hover:text-[#E8341C] hover:border-[#E8341C]/40 hover:bg-white transition-all duration-150"
+            className="p-2.5 rounded-md bg-[#FAF7F2] border border-[#D9D1C5] text-[#1A1614] hover:text-[#E8341C] hover:border-[#E8341C]/40 hover:bg-white transition-all duration-150"
             aria-label="Send Email"
           >
-            <Mail className="w-4 h-4" />
+            <MailIcon className="w-4 h-4" />
           </a>
         </div>
-      </motion.div>
+      </div>
     </aside>
   );
 }

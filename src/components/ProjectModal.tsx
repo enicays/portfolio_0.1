@@ -4,16 +4,16 @@ import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { Project } from "@/data/portfolioData";
 import {
-  X,
-  ExternalLink,
-  Layers,
-  Cpu,
-  ShieldCheck,
-  TrendingUp,
-  LayoutGrid,
-  Maximize2,
-} from "lucide-react";
-import { GithubIcon } from "./Icons";
+  GithubIcon,
+  CloseIcon,
+  ExternalLinkIcon,
+  MaximizeIcon,
+  GridIcon,
+  LayersIcon,
+  CpuIcon,
+  TrendingUpIcon,
+  ShieldCheckIcon,
+} from "./Icons";
 
 interface ProjectModalProps {
   project: Project | null;
@@ -67,16 +67,16 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
       onWheel={handleModalWheel}
       className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 overflow-y-auto"
     >
-      {/* Backdrop */}
+      {/* Backdrop (Solid darkening overlay, no blur gimmick) */}
       <div
-        className="fixed inset-0 bg-[#1A1614]/50 backdrop-blur-xs transition-opacity animate-in fade-in duration-200"
+        className="fixed inset-0 bg-[#1A1614]/70 transition-opacity animate-in fade-in duration-150"
         onClick={onClose}
       />
 
       {/* Modal Dialog Content (Warm paper editorial modal) */}
       <div
         data-lenis-prevent
-        className="relative w-full max-w-4xl bg-[#FCFAF7] border border-[#D9D1C5] rounded-3xl shadow-xl overflow-hidden z-10 my-auto animate-in fade-in zoom-in-95 duration-200 max-h-[90vh] flex flex-col text-[#1A1614]"
+        className="relative w-full max-w-4xl bg-[#FCFAF7] border border-[#D9D1C5] rounded-lg shadow-xl overflow-hidden z-10 my-auto animate-in fade-in zoom-in-95 duration-150 max-h-[90vh] flex flex-col text-[#1A1614]"
       >
         {/* Top Header Bar */}
         <div className="shrink-0 z-20 flex items-center justify-between px-6 py-4 bg-[#FAF7F2] border-b border-[#D9D1C5]">
@@ -92,10 +92,10 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
           <button
             onClick={onClose}
-            className="p-2 rounded-xl bg-[#FCFAF7] border border-[#D9D1C5] text-[#6B625A] hover:text-[#1A1614] hover:border-[#1A1614] transition-colors cursor-pointer"
+            className="p-2 rounded-md bg-[#FCFAF7] border border-[#D9D1C5] text-[#6B625A] hover:text-[#1A1614] hover:border-[#1A1614] transition-colors cursor-pointer"
             aria-label="Close modal"
           >
-            <X className="w-4 h-4" />
+            <CloseIcon className="w-4 h-4" />
           </button>
         </div>
 
@@ -118,7 +118,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
           {/* Key Metrics */}
           {project.metrics && project.metrics.length > 0 && (
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 p-4 rounded-2xl bg-[#FAF7F2] border border-[#D9D1C5]">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 p-4 rounded-lg bg-[#FAF7F2] border border-[#D9D1C5]">
               {project.metrics.map((metric, idx) => (
                 <div key={idx} className="p-3">
                   <div className="font-display font-black text-xl sm:text-2xl text-[#1A1614]">
@@ -137,7 +137,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             <div className="space-y-3.5">
               <div className="flex items-center justify-between">
                 <h3 className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#1A1614] uppercase">
-                  <LayoutGrid className="w-4 h-4 text-[#E8341C]" />
+                  <GridIcon className="w-4 h-4 text-[#E8341C]" />
                   Application Interface &amp; Live Screens
                 </h3>
                 <span className="text-[11px] font-mono text-[#6B625A]">
@@ -146,7 +146,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               </div>
 
               {/* Main Featured Screenshot */}
-              <div className="relative aspect-[16/8] sm:aspect-[16/7.5] w-full rounded-2xl overflow-hidden bg-[#181615] border border-[#D9D1C5] shadow-xs group">
+              <div className="relative aspect-[16/8] sm:aspect-[16/7.5] w-full rounded-md overflow-hidden bg-[#181615] border border-[#D9D1C5] shadow-xs group">
                 <Image
                   src={project.screenshots[activeScreenshotIdx].url}
                   alt={project.screenshots[activeScreenshotIdx].title}
@@ -160,16 +160,16 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   href={project.screenshots[activeScreenshotIdx].url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="absolute top-3 right-3 px-2.5 py-1.5 rounded-lg bg-[#1A1614]/85 backdrop-blur-xs text-white text-xs font-mono font-medium flex items-center gap-1.5 opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity hover:bg-[#E8341C]"
+                  className="absolute top-3 right-3 px-2.5 py-1.5 rounded-md bg-[#1A1614] text-white text-xs font-mono font-medium flex items-center gap-1.5 opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity hover:bg-[#E8341C]"
                   title="Open full resolution in new tab"
                 >
                   <span className="hidden sm:inline">Full Resolution</span>
-                  <Maximize2 className="w-3.5 h-3.5" />
+                  <MaximizeIcon className="w-3.5 h-3.5" />
                 </a>
               </div>
 
               {/* Caption Card */}
-              <div className="p-3.5 sm:p-4 rounded-2xl bg-[#FAF7F2] border border-[#D9D1C5]">
+              <div className="p-3.5 sm:p-4 rounded-lg bg-[#FAF7F2] border border-[#D9D1C5]">
                 <p className="text-xs sm:text-sm font-mono font-bold text-[#1A1614]">
                   {project.screenshots[activeScreenshotIdx].title}
                 </p>
@@ -187,7 +187,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                       key={idx}
                       type="button"
                       onClick={() => setActiveScreenshotIdx(idx)}
-                      className={`relative aspect-[16/8] sm:aspect-[16/7] rounded-xl overflow-hidden border text-left transition-all duration-200 cursor-pointer ${
+                      className={`relative aspect-[16/8] sm:aspect-[16/7] rounded-md overflow-hidden border text-left transition-all duration-200 cursor-pointer ${
                         isActive
                           ? "border-[#E8341C] ring-2 ring-[#E8341C]/30 shadow-xs"
                           : "border-[#D9D1C5] opacity-70 hover:opacity-100 hover:border-[#1A1614]"
@@ -216,7 +216,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           {/* Project Overview */}
           <div className="space-y-3">
             <h3 className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#1A1614] uppercase">
-              <Layers className="w-4 h-4 text-[#E8341C]" />
+              <LayersIcon className="w-4 h-4 text-[#E8341C]" />
               System Overview
             </h3>
             <p className="text-base text-[#1A1614] leading-relaxed font-normal">
@@ -226,9 +226,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
           {/* Challenge & Solution Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-5 rounded-2xl bg-[#FAF7F2] border border-[#D9D1C5]">
+            <div className="p-5 rounded-lg bg-[#FAF7F2] border border-[#D9D1C5]">
               <h4 className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#E8341C] uppercase mb-2">
-                <Cpu className="w-4 h-4" />
+                <CpuIcon className="w-4 h-4" />
                 The Engineering Challenge
               </h4>
               <p className="text-sm text-[#6B625A] leading-relaxed">
@@ -236,9 +236,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-[#FAF7F2] border border-[#D9D1C5]">
+            <div className="p-5 rounded-lg bg-[#FAF7F2] border border-[#D9D1C5]">
               <h4 className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#1A1614] uppercase mb-2">
-                <TrendingUp className="w-4 h-4 text-[#E8341C]" />
+                <TrendingUpIcon className="w-4 h-4 text-[#E8341C]" />
                 The Architectural Solution
               </h4>
               <p className="text-sm text-[#6B625A] leading-relaxed">
@@ -250,14 +250,14 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           {/* Architectural Highlights */}
           <div className="space-y-3">
             <h3 className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#1A1614] uppercase">
-              <ShieldCheck className="w-4 h-4 text-[#E8341C]" />
+              <ShieldCheckIcon className="w-4 h-4 text-[#E8341C]" />
               Architectural Highlights
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               {project.architectureHighlights.map((point, idx) => (
                 <div
                   key={idx}
-                  className="flex items-start gap-2.5 p-3 rounded-xl bg-[#FAF7F2] border border-[#D9D1C5]"
+                  className="flex items-start gap-2.5 p-3 rounded-md bg-[#FAF7F2] border border-[#D9D1C5]"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-[#E8341C] shrink-0 mt-2" />
                   <span className="text-xs text-[#1A1614] leading-normal">
@@ -291,7 +291,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#FCFAF7] border border-[#D9D1C5] text-xs font-semibold text-[#1A1614] hover:border-[#1A1614] transition-all"
+                className="flex items-center gap-2 px-4 py-2 rounded-md bg-[#FCFAF7] border border-[#D9D1C5] text-xs font-semibold text-[#1A1614] hover:border-[#1A1614] transition-all"
               >
                 <GithubIcon className="w-3.5 h-3.5" />
                 <span>View Source</span>
@@ -303,10 +303,10 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 py-2 rounded-xl bg-[#E8341C] text-white text-xs font-bold hover:brightness-105 transition-all shadow-xs"
+                className="flex items-center gap-2 px-5 py-2 rounded-md bg-[#E8341C] text-white text-xs font-bold hover:brightness-105 transition-all shadow-xs"
               >
                 <span>Live Demo</span>
-                <ExternalLink className="w-3.5 h-3.5" />
+                <ExternalLinkIcon className="w-3.5 h-3.5" />
               </a>
             )}
           </div>
