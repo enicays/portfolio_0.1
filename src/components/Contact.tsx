@@ -19,7 +19,7 @@ export default function Contact() {
   );
 
   return (
-    <section id="contact" className="pt-10 pb-14 sm:pt-14 sm:pb-16 lg:py-20 relative scroll-mt-24 border-t border-[#D9D1C5]">
+    <section id="contact" className="pt-10 pb-14 sm:pt-14 sm:pb-16 lg:py-20 relative scroll-mt-20 sm:scroll-mt-24 border-t border-[#D9D1C5]">
       <div className="max-w-xl mx-auto w-full">
         {/* Section Header */}
         <div className="mb-7">
@@ -33,7 +33,7 @@ export default function Contact() {
         </div>
 
         {/* Free Quote Form Card */}
-        <div id="quote-form" className="scroll-mt-20">
+        <div id="quote-form" className="scroll-mt-20 sm:scroll-mt-24">
           <InquiryForm />
         </div>
 

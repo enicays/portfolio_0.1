@@ -161,7 +161,7 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-12 lg:py-18 relative scroll-mt-28">
+    <section id="projects" className="py-12 lg:py-18 relative scroll-mt-20 sm:scroll-mt-24">
       <div className="w-full">
         {/* Section Heading (Matching Sawad reference: Bold RECENT + Muted PROJECTS - rendered immediately) */}
         <div className="mb-8 sm:mb-12 select-none">

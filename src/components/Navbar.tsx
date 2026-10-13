@@ -90,25 +90,29 @@ export default function Navbar() {
     e.preventDefault();
     const targetId = href.replace("#", "");
 
-    // On mobile screens, scroll directly to the quote form card so it lands right in view
-    const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
-    const effectiveId =
-      targetId === "contact" && isMobile ? "quote-form" : targetId;
+    if (targetId === "hero") {
+      if (window.__lenisSmooth) {
+        window.__lenisSmooth.scrollTo(0, { duration: 0.9 });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      return;
+    }
 
-    const elem =
-      document.getElementById(effectiveId) || document.getElementById(targetId);
+    const elem = document.getElementById(targetId);
     if (!elem) return;
 
-    // Navbar height is 46-50px with 14-20px top margin (~65px total dock height)
-    const navbarOffset = -65;
-
     if (window.__lenisSmooth) {
+      // Lenis natively honors getComputedStyle(elem).scrollMarginTop when offset is 0
       window.__lenisSmooth.scrollTo(elem, {
-        offset: navbarOffset,
+        offset: 0,
         duration: 0.9,
       });
     } else {
-      const top = elem.getBoundingClientRect().top + window.scrollY + navbarOffset;
+      // Native smooth scroll fallback respecting CSS scroll-margin-top
+      const style = window.getComputedStyle(elem);
+      const scrollMarginTop = parseFloat(style.scrollMarginTop) || 0;
+      const top = elem.getBoundingClientRect().top + window.scrollY - scrollMarginTop;
       window.scrollTo({ top, behavior: "smooth" });
     }
   };

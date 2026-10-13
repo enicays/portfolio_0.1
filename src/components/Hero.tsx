@@ -8,26 +8,33 @@ export default function Hero() {
   const { personal, marqueeItems } = portfolioData;
 
   const handleScrollTo = (id: string) => {
-    const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
-    const targetId = id === "contact" && isMobile ? "quote-form" : id;
-    const elem = document.getElementById(targetId) || document.getElementById(id);
-    if (!elem) return;
+    if (id === "hero") {
+      if (window.__lenisSmooth) {
+        window.__lenisSmooth.scrollTo(0, { duration: 0.9 });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      return;
+    }
 
-    const navbarOffset = -65;
+    const elem = document.getElementById(id);
+    if (!elem) return;
 
     if (window.__lenisSmooth) {
       window.__lenisSmooth.scrollTo(elem, {
-        offset: navbarOffset,
+        offset: 0,
         duration: 0.9,
       });
     } else {
-      const top = elem.getBoundingClientRect().top + window.scrollY + navbarOffset;
+      const style = window.getComputedStyle(elem);
+      const scrollMarginTop = parseFloat(style.scrollMarginTop) || 0;
+      const top = elem.getBoundingClientRect().top + window.scrollY - scrollMarginTop;
       window.scrollTo({ top, behavior: "smooth" });
     }
   };
 
   return (
-    <section id="hero" className="relative pt-0 pb-12 lg:pb-16 scroll-mt-28">
+    <section id="hero" className="relative pt-0 pb-12 lg:pb-16 scroll-mt-20 sm:scroll-mt-24">
       <div className="w-full relative z-10">
         {/* Main Value Proposition Headline (Rendered immediately - no template fade-up) */}
         <div className="mb-5 sm:mb-6 select-none">

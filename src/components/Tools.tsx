@@ -38,7 +38,7 @@ export default function Tools() {
   };
 
   return (
-    <section id="tools" className="py-14 lg:py-20 relative scroll-mt-28 border-t border-[#D9D1C5]">
+    <section id="tools" className="py-14 lg:py-20 relative scroll-mt-20 sm:scroll-mt-24 border-t border-[#D9D1C5]">
       <div className="w-full">
         {/* Section Heading (Confident, quiet, plain heading with white space - rendered immediately) */}
         <div className="max-w-2xl mb-12 sm:mb-16">
