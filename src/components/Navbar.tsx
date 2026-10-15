@@ -63,18 +63,20 @@ export default function Navbar() {
             return;
           }
 
+          let current = "hero";
           const sectionIds = navItems.map((item) => item.id);
-          for (let i = sectionIds.length - 1; i >= 0; i--) {
+          for (let i = sectionIds.length - 1; i >= 1; i--) {
             const el = document.getElementById(sectionIds[i]);
             if (el) {
               const rect = el.getBoundingClientRect();
               // Trigger when section top enters near the upper third of screen
               if (rect.top <= 200) {
-                setActiveSection(sectionIds[i]);
+                current = sectionIds[i];
                 break;
               }
             }
           }
+          setActiveSection(current);
           ticking = false;
         });
         ticking = true;
@@ -134,11 +136,10 @@ export default function Navbar() {
               href={item.href}
               onClick={(e) => handleNavClick(e, item.href)}
               aria-label={item.label}
-              className={`relative flex items-center justify-center sm:justify-start w-9 h-9 sm:w-auto sm:px-3.5 sm:py-1.5 rounded-md text-xs sm:text-[13px] font-medium transition-colors duration-150 active:scale-95 ${
-                isActive
-                  ? "text-[#1A1614] font-semibold"
-                  : "text-[#6B625A] hover:text-[#1A1614]"
-              }`}
+              className={`relative flex items-center justify-center sm:justify-start w-9 h-9 sm:w-auto sm:px-3.5 sm:py-1.5 rounded-md text-xs sm:text-[13px] font-medium transition-colors duration-150 active:scale-95 ${isActive
+                ? "text-[#1A1614] font-semibold"
+                : "text-[#6B625A] hover:text-[#1A1614]"
+                }`}
             >
               {/* Hardware-accelerated sliding active pill */}
               {isActive && (
@@ -157,9 +158,8 @@ export default function Navbar() {
               {/* Icon */}
               <Icon
                 strokeWidth={isActive ? 2.2 : 1.8}
-                className={`w-4 h-4 shrink-0 transition-colors duration-150 ${
-                  isActive ? "text-[#E8341C]" : "text-[#6B625A]"
-                }`}
+                className={`w-4 h-4 shrink-0 transition-colors duration-150 ${isActive ? "text-[#E8341C]" : "text-[#6B625A]"
+                  }`}
               />
 
               {/* Desktop text label (Hidden on mobile to preserve 100% stable width and eliminate animation jank) */}
