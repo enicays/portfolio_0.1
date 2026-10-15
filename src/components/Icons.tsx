@@ -222,6 +222,82 @@ export function MailIcon({ className = "w-4 h-4" }: { className?: string }) {
   );
 }
 
+export function ProfileGithubIcon({
+  className = "w-4 h-4",
+  strokeWidth = 2,
+}: {
+  className?: string;
+  strokeWidth?: number;
+}) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 32 32"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M14 6.5 Q16 7 18 6.5 L22 3 L25 7.5 C27 11 27 16 22 19.5 C19 20.5 13 20.5 10 19.5 C5 16 5 11 7 7.5 L10 3 Z" />
+      <path d="M12 20.5 V29" />
+      <path d="M20 20.5 V29" />
+      <path d="M12 25 H7 C3 25 1 22 1 17" />
+    </svg>
+  );
+}
+
+export function ProfileLinkedinIcon({
+  className = "w-4 h-4",
+  strokeWidth = 2,
+}: {
+  className?: string;
+  strokeWidth?: number;
+}) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 32 32"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <rect width="24" height="24" x="4" y="4" rx="4" />
+      <circle cx="10" cy="9.5" r="1.5" fill="currentColor" stroke="none" />
+      <path d="M10 14.5 V22" />
+      <path d="M15 22 V14.5 C15 14.5 15.5 14 17 14 C19.5 14 21 15.5 21 18 V22" />
+    </svg>
+  );
+}
+
+export function ProfileMailIcon({
+  className = "w-4 h-4",
+  strokeWidth = 2,
+}: {
+  className?: string;
+  strokeWidth?: number;
+}) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 32 32"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M29 3 L19.5 29 L14 17 L2 11.5 Z" />
+      <path d="M29 3 L14 17" />
+    </svg>
+  );
+}
+
 export function NavHomeIcon({
   className = "w-4 h-4",
   strokeWidth = 1.8,

@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { portfolioData } from "@/data/portfolioData";
-import { GithubIcon, LinkedinIcon, MailIcon } from "./Icons";
+import { ProfileGithubIcon, ProfileLinkedinIcon, ProfileMailIcon } from "./Icons";
 
 export default function ProfileCard() {
   const { personal } = portfolioData;
@@ -47,7 +47,7 @@ export default function ProfileCard() {
             className="p-2.5 rounded-md bg-[#FAF7F2] border border-[#D9D1C5] text-[#1A1614] hover:text-[#E8341C] hover:border-[#E8341C]/40 hover:bg-white transition-all duration-150"
             aria-label="GitHub Profile"
           >
-            <GithubIcon className="w-4 h-4" />
+            <ProfileGithubIcon className="w-4 h-4" />
           </a>
 
           <a
@@ -57,7 +57,7 @@ export default function ProfileCard() {
             className="p-2.5 rounded-md bg-[#FAF7F2] border border-[#D9D1C5] text-[#1A1614] hover:text-[#E8341C] hover:border-[#E8341C]/40 hover:bg-white transition-all duration-150"
             aria-label="LinkedIn Profile"
           >
-            <LinkedinIcon className="w-4 h-4" />
+            <ProfileLinkedinIcon className="w-4 h-4" />
           </a>
 
           <a
@@ -65,7 +65,7 @@ export default function ProfileCard() {
             className="p-2.5 rounded-md bg-[#FAF7F2] border border-[#D9D1C5] text-[#1A1614] hover:text-[#E8341C] hover:border-[#E8341C]/40 hover:bg-white transition-all duration-150"
             aria-label="Send Email"
           >
-            <MailIcon className="w-4 h-4" />
+            <ProfileMailIcon className="w-4 h-4" />
           </a>
         </div>
       </div>
