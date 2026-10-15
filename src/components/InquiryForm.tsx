@@ -8,7 +8,6 @@ const PROJECT_TYPES = [
   "Business website",
   "E-commerce store",
   "Web app",
-  "Site redesign",
   "Something else",
 ];
 
@@ -149,16 +148,21 @@ export default function InquiryForm() {
   const firstName = name.trim().split(" ")[0] || "there";
 
   return (
-    <div className="w-full bg-[#FCFAF7] border border-[#D9D1C5] rounded-lg p-6 sm:p-9 shadow-md transition-all">
+    <div className="w-full bg-[#FCFAF7] border border-[#D9D1C5] rounded-lg p-5 sm:p-8 shadow-md transition-all">
       {!isSuccess ? (
         <div>
-          {/* Card Header */}
-          <h3 className="font-display font-bold text-2xl sm:text-[28px] text-[#1A1614] tracking-tight">
-            Get a free quote
-          </h3>
+          {/* Card Header & Inline Step Counter on Same Row */}
+          <div className="flex items-center justify-between gap-3">
+            <h3 className="font-display font-bold text-xl sm:text-[26px] text-[#1A1614] tracking-tight">
+              Get a free quote
+            </h3>
+            <span className="text-xs sm:text-sm font-mono font-medium text-[#6B625A] shrink-0">
+              Step {currentStep + 1} of {totalSteps}
+            </span>
+          </div>
 
           {/* 3-Segment Progress Bar */}
-          <div className="flex gap-2 sm:gap-2.5 my-4 sm:my-5" aria-hidden="true">
+          <div className="flex gap-2 sm:gap-2.5 mt-3 sm:mt-4 mb-4 sm:mb-5" aria-hidden="true">
             {[0, 1, 2].map((stepIdx) => (
               <div
                 key={stepIdx}
@@ -179,17 +183,21 @@ export default function InquiryForm() {
             {/* Step 1: Project Type (Auto-advance on click) */}
             {currentStep === 0 && (
               <fieldset className="border-0 p-0 m-0">
-                <legend className="font-bold text-base sm:text-lg text-[#1A1614] mb-3.5 block">
+                <legend className="font-bold text-sm sm:text-lg text-[#1A1614] mb-2.5 sm:mb-3.5 block">
                   What are you building?
                 </legend>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
-                  {PROJECT_TYPES.map((type) => {
+                <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
+                  {PROJECT_TYPES.map((type, idx) => {
                     const isSelected = projectType === type;
+                    const isFifthOfFive = idx === 4 && PROJECT_TYPES.length === 5;
+
                     return (
                       <label
                         key={type}
-                        className={`relative flex items-center gap-3 p-3.5 rounded-md border transition-all cursor-pointer select-none ${
+                        className={`relative flex items-center gap-2.5 sm:gap-3 p-3 sm:p-3.5 rounded-md border transition-all cursor-pointer select-none ${
+                          isFifthOfFive ? "col-span-2 sm:col-span-1" : ""
+                        } ${
                           isSelected
                             ? "bg-[#FAF7F2] border-[#E8341C] shadow-2xs"
                             : "bg-[#FAF7F2] border-[#D9D1C5] hover:border-[#A89F93]"
@@ -205,15 +213,15 @@ export default function InquiryForm() {
                         />
                         {/* Radio Circle */}
                         <span
-                          className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 transition-colors ${
+                          className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full border flex items-center justify-center shrink-0 transition-colors ${
                             isSelected ? "border-[#E8341C]" : "border-[#C4BCB0]"
                           }`}
                         >
                           {isSelected && (
-                            <span className="w-2 h-2 rounded-full bg-[#E8341C]" />
+                            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#E8341C]" />
                           )}
                         </span>
-                        <span className="text-sm sm:text-base font-medium text-[#1A1614]">
+                        <span className="text-xs sm:text-base font-medium text-[#1A1614] leading-tight">
                           {type}
                         </span>
                       </label>
@@ -222,12 +230,12 @@ export default function InquiryForm() {
                 </div>
 
                 {errorMsg && (
-                  <p className="text-xs sm:text-sm text-[#E8341C] mt-3" role="alert">
+                  <p className="text-xs sm:text-sm text-[#E8341C] mt-2.5" role="alert">
                     {errorMsg}
                   </p>
                 )}
 
-                <p className="text-center text-xs sm:text-sm text-[#6B625A] mt-5">
+                <p className="text-center text-xs sm:text-sm text-[#6B625A] mt-4 sm:mt-5">
                   Free, no commitment.
                 </p>
               </fieldset>

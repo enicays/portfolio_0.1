@@ -45,16 +45,33 @@ const navItems: NavItem[] = [
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState<string>("hero");
+  const [isVisible, setIsVisible] = useState<boolean>(true);
 
   useEffect(() => {
+    let lastScrollY = typeof window !== "undefined" ? window.scrollY : 0;
     let ticking = false;
 
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+
+          // Always reveal near the very top of the page
+          if (currentScrollY <= 40) {
+            setIsVisible(true);
+          } else if (currentScrollY > lastScrollY + 5) {
+            // Scrolling down -> smooth hide
+            setIsVisible(false);
+          } else if (currentScrollY < lastScrollY - 5) {
+            // Scrolling up -> instant reveal
+            setIsVisible(true);
+          }
+
+          lastScrollY = Math.max(0, currentScrollY);
+
           // Bottom of page detection ensures contact is always active at the end
           const isAtBottom =
-            window.innerHeight + window.scrollY >=
+            window.innerHeight + currentScrollY >=
             document.documentElement.scrollHeight - 60;
 
           if (isAtBottom) {
@@ -90,6 +107,7 @@ export default function Navbar() {
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+    setIsVisible(true);
     const targetId = href.replace("#", "");
 
     if (targetId === "hero") {
@@ -120,7 +138,13 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed top-3.5 sm:top-5 left-1/2 -translate-x-1/2 z-50 pointer-events-auto">
+    <header
+      className={`fixed top-3.5 sm:top-5 left-1/2 -translate-x-1/2 z-50 transition-all ${
+        isVisible
+          ? "translate-y-0 opacity-100 duration-100 ease-out pointer-events-auto"
+          : "-translate-y-24 opacity-0 duration-300 ease-in-out pointer-events-none"
+      }`}
+    >
       {/* Editorial Warm-Paper Silky Smooth Floating Dock (Solid opaque, no blur gimmick) */}
       <nav
         className="relative flex items-center justify-center gap-1 sm:gap-2 px-2 sm:px-3 h-[46px] sm:h-[50px] rounded-lg bg-[#FAF7F2] border border-[#D9D1C5] shadow-xs select-none"

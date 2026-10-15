@@ -19,15 +19,18 @@ export default function Contact() {
   );
 
   return (
-    <section id="contact" className="pt-10 pb-14 sm:pt-14 sm:pb-16 lg:py-20 relative scroll-mt-20 sm:scroll-mt-24 border-t border-[#D9D1C5]">
+    <section id="contact" className="pt-4 pb-12 sm:pt-8 sm:pb-16 lg:py-20 relative scroll-mt-20 sm:scroll-mt-24">
+      {/* Horizontal divider line hidden on mobile viewports */}
+      <hr className="hidden sm:block border-t border-[#D9D1C5] mb-8 sm:mb-12" />
+
       <div className="max-w-xl mx-auto w-full">
         {/* Section Header */}
-        <div className="mb-7">
-          <h2 className="font-display font-black text-3xl sm:text-5xl text-[#1A1614] tracking-tight uppercase leading-[0.95] mb-3.5">
+        <div className="mb-4 sm:mb-6">
+          <h2 className="font-display font-black text-2xl sm:text-4xl md:text-5xl text-[#1A1614] tracking-tight uppercase leading-[0.98] sm:leading-[0.95] mb-2 sm:mb-3">
             HAVE A PROJECT? <br />
             <span className="text-[#E8341C]">LET&apos;S TALK.</span>
           </h2>
-          <p className="text-base text-[#6B625A] font-normal leading-relaxed">
+          <p className="text-sm sm:text-base text-[#6B625A] font-normal leading-relaxed">
             Tell me what you need. I&apos;ll reply with a quote within 24 hours.
           </p>
         </div>
