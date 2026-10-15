@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import {
   NavHomeIcon,
@@ -46,6 +46,16 @@ const navItems: NavItem[] = [
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState<string>("hero");
   const [isVisible, setIsVisible] = useState<boolean>(true);
+  const isVisibleRef = useRef<boolean>(true);
+  const isNavigatingRef = useRef<boolean>(false);
+  const navTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const updateVisibility = (visible: boolean) => {
+    if (isVisibleRef.current !== visible) {
+      isVisibleRef.current = visible;
+      setIsVisible(visible);
+    }
+  };
 
   useEffect(() => {
     let lastScrollY = typeof window !== "undefined" ? window.scrollY : 0;
@@ -56,18 +66,35 @@ export default function Navbar() {
         window.requestAnimationFrame(() => {
           const currentScrollY = window.scrollY;
 
-          // Always reveal near the very top of the page
-          if (currentScrollY <= 40) {
-            setIsVisible(true);
-          } else if (currentScrollY > lastScrollY + 5) {
-            // Scrolling down -> smooth hide
-            setIsVisible(false);
-          } else if (currentScrollY < lastScrollY - 5) {
-            // Scrolling up -> instant reveal
-            setIsVisible(true);
+          // If currently performing programmatic navigation from nav click, keep navbar visible
+          if (isNavigatingRef.current) {
+            updateVisibility(true);
+            lastScrollY = Math.max(0, currentScrollY);
+            ticking = false;
+            return;
           }
 
-          lastScrollY = Math.max(0, currentScrollY);
+          // Always reveal near the very top of the page
+          if (currentScrollY <= 40) {
+            updateVisibility(true);
+            lastScrollY = Math.max(0, currentScrollY);
+          } else if (isVisibleRef.current) {
+            if (currentScrollY < lastScrollY) {
+              lastScrollY = currentScrollY;
+            } else if (currentScrollY > lastScrollY + 10) {
+              // Smooth hide on scroll down
+              updateVisibility(false);
+              lastScrollY = currentScrollY;
+            }
+          } else {
+            if (currentScrollY > lastScrollY) {
+              lastScrollY = currentScrollY;
+            } else if (currentScrollY < lastScrollY - 6) {
+              // Instant reveal on scroll up
+              updateVisibility(true);
+              lastScrollY = currentScrollY;
+            }
+          }
 
           // Bottom of page detection ensures contact is always active at the end
           const isAtBottom =
@@ -100,15 +127,43 @@ export default function Navbar() {
       }
     };
 
+    const handleManualGesture = () => {
+      if (isNavigatingRef.current) {
+        isNavigatingRef.current = false;
+        if (navTimeoutRef.current) {
+          clearTimeout(navTimeoutRef.current);
+        }
+      }
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("wheel", handleManualGesture, { passive: true });
+    window.addEventListener("touchstart", handleManualGesture, { passive: true });
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("wheel", handleManualGesture);
+      window.removeEventListener("touchstart", handleManualGesture);
+      if (navTimeoutRef.current) {
+        clearTimeout(navTimeoutRef.current);
+      }
+    };
   }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    setIsVisible(true);
+    updateVisibility(true);
     const targetId = href.replace("#", "");
+
+    setActiveSection(targetId);
+    isNavigatingRef.current = true;
+    if (navTimeoutRef.current) {
+      clearTimeout(navTimeoutRef.current);
+    }
+    navTimeoutRef.current = setTimeout(() => {
+      isNavigatingRef.current = false;
+    }, 1000);
 
     if (targetId === "hero") {
       if (window.__lenisSmooth) {
@@ -141,7 +196,7 @@ export default function Navbar() {
     <header
       className={`fixed top-3.5 sm:top-5 left-1/2 -translate-x-1/2 z-50 transition-all ${
         isVisible
-          ? "translate-y-0 opacity-100 duration-100 ease-out pointer-events-auto"
+          ? "translate-y-0 opacity-100 duration-150 ease-out pointer-events-auto"
           : "-translate-y-24 opacity-0 duration-300 ease-in-out pointer-events-none"
       }`}
     >

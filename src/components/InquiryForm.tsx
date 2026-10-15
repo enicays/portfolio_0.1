@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { CheckIcon, ArrowRightIcon, SpinnerIcon } from "./Icons";
 
 const PROJECT_TYPES = [
@@ -47,6 +47,15 @@ export default function InquiryForm() {
   const [invalidFields, setInvalidFields] = useState<{ [key: string]: boolean }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const selectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (selectTimeoutRef.current) {
+        clearTimeout(selectTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const toggleFeature = (item: string) => {
     setFeatures((prev) =>
@@ -57,8 +66,11 @@ export default function InquiryForm() {
   const handleSelectProjectType = (type: string) => {
     setProjectType(type);
     setErrorMsg("");
+    if (selectTimeoutRef.current) {
+      clearTimeout(selectTimeoutRef.current);
+    }
     // 200ms visual highlight feedback before advancing smoothly
-    setTimeout(() => {
+    selectTimeoutRef.current = setTimeout(() => {
       setCurrentStep(1);
     }, 200);
   };
@@ -209,6 +221,11 @@ export default function InquiryForm() {
                           value={type}
                           checked={isSelected}
                           onChange={() => handleSelectProjectType(type)}
+                          onClick={() => {
+                            if (isSelected) {
+                              handleSelectProjectType(type);
+                            }
+                          }}
                           className="sr-only"
                         />
                         {/* Radio Circle */}
@@ -235,7 +252,19 @@ export default function InquiryForm() {
                   </p>
                 )}
 
-                <p className="text-center text-xs sm:text-sm text-[#6B625A] mt-4 sm:mt-5">
+                {/* Accessible Action Button */}
+                <div className="flex items-center gap-3 mt-4 sm:mt-5">
+                  <button
+                    type="button"
+                    onClick={handleNext}
+                    className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-md bg-[#E8341C] hover:brightness-105 text-white font-bold text-sm transition-all cursor-pointer shadow-xs active:translate-y-px"
+                  >
+                    <span>Continue</span>
+                    <ArrowRightIcon className="w-4 h-4" />
+                  </button>
+                </div>
+
+                <p className="text-center text-xs sm:text-sm text-[#6B625A] mt-3 sm:mt-4">
                   Free, no commitment.
                 </p>
               </fieldset>
