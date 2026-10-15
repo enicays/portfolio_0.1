@@ -60,10 +60,12 @@ export default function Navbar() {
   useEffect(() => {
     let lastScrollY = typeof window !== "undefined" ? window.scrollY : 0;
     let ticking = false;
+    let rafId: number | null = null;
 
     const handleScroll = () => {
       if (!ticking) {
-        window.requestAnimationFrame(() => {
+        rafId = window.requestAnimationFrame(() => {
+          rafId = null;
           const currentScrollY = window.scrollY;
 
           // If currently performing programmatic navigation from nav click, keep navbar visible
@@ -145,6 +147,9 @@ export default function Navbar() {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("wheel", handleManualGesture);
       window.removeEventListener("touchstart", handleManualGesture);
+      if (rafId) {
+        window.cancelAnimationFrame(rafId);
+      }
       if (navTimeoutRef.current) {
         clearTimeout(navTimeoutRef.current);
       }

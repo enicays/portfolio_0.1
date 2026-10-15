@@ -30,7 +30,7 @@ export default function Contact() {
             HAVE A PROJECT? <br />
             <span className="text-[#E8341C]">LET&apos;S TALK.</span>
           </h2>
-          <p className="text-sm sm:text-base text-[#6B625A] font-normal leading-relaxed">
+          <p className="hidden sm:block text-sm sm:text-base text-[#6B625A] font-normal leading-relaxed">
             Tell me what you need. I&apos;ll reply with a quote within 24 hours.
           </p>
         </div>

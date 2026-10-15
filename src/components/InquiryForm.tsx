@@ -68,9 +68,11 @@ export default function InquiryForm() {
     setErrorMsg("");
     if (selectTimeoutRef.current) {
       clearTimeout(selectTimeoutRef.current);
+      selectTimeoutRef.current = null;
     }
     // 200ms visual highlight feedback before advancing smoothly
     selectTimeoutRef.current = setTimeout(() => {
+      selectTimeoutRef.current = null;
       setCurrentStep(1);
     }, 200);
   };
@@ -109,6 +111,10 @@ export default function InquiryForm() {
   };
 
   const handleNext = () => {
+    if (selectTimeoutRef.current) {
+      clearTimeout(selectTimeoutRef.current);
+      selectTimeoutRef.current = null;
+    }
     if (!validateCurrentStep()) return;
     if (currentStep < totalSteps - 1) {
       setCurrentStep((prev) => prev + 1);
@@ -118,6 +124,10 @@ export default function InquiryForm() {
   };
 
   const handleBack = () => {
+    if (selectTimeoutRef.current) {
+      clearTimeout(selectTimeoutRef.current);
+      selectTimeoutRef.current = null;
+    }
     setErrorMsg("");
     setInvalidFields({});
     if (currentStep > 0) {
@@ -126,6 +136,11 @@ export default function InquiryForm() {
   };
 
   const handleSubmit = async () => {
+    if (isSubmitting) return;
+    if (selectTimeoutRef.current) {
+      clearTimeout(selectTimeoutRef.current);
+      selectTimeoutRef.current = null;
+    }
     setIsSubmitting(true);
     setErrorMsg("");
 
@@ -280,13 +295,16 @@ export default function InquiryForm() {
                   Pick everything that applies (optional).
                 </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  {FEATURES_LIST.map((feat) => {
+                <div className="grid grid-cols-2 gap-2 sm:gap-2.5">
+                  {FEATURES_LIST.map((feat, idx) => {
                     const isChecked = features.includes(feat);
+                    const isOddLast = FEATURES_LIST.length % 2 !== 0 && idx === FEATURES_LIST.length - 1;
                     return (
                       <label
                         key={feat}
-                        className={`relative flex items-center gap-3 p-3 rounded-md border transition-all cursor-pointer select-none ${
+                        className={`relative flex items-center gap-2 sm:gap-2.5 p-2.5 sm:p-3 rounded-md border transition-all cursor-pointer select-none ${
+                          isOddLast ? "col-span-2 sm:col-span-1" : ""
+                        } ${
                           isChecked
                             ? "bg-[#FAF7F2] border-[#E8341C] shadow-2xs"
                             : "bg-[#FAF7F2] border-[#D9D1C5] hover:border-[#A89F93]"
@@ -301,17 +319,17 @@ export default function InquiryForm() {
                           className="sr-only"
                         />
                         <span
-                          className={`w-4 h-4 rounded-md border flex items-center justify-center shrink-0 transition-colors ${
+                          className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-md border flex items-center justify-center shrink-0 transition-colors ${
                             isChecked
                               ? "border-[#E8341C] bg-[#E8341C]"
                               : "border-[#C4BCB0]"
                           }`}
                         >
                           {isChecked && (
-                            <CheckIcon className="w-3 h-3 text-white" />
+                            <CheckIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white" />
                           )}
                         </span>
-                        <span className="text-sm font-medium text-[#1A1614]">
+                        <span className="text-xs sm:text-sm font-medium text-[#1A1614] leading-tight">
                           {feat}
                         </span>
                       </label>
