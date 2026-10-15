@@ -239,7 +239,7 @@ export function NavHomeIcon({
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z" />
+      <path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-4v-7a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v7H4a1 1 0 0 1-1-1z" />
     </svg>
   );
 }
@@ -261,10 +261,9 @@ export function NavProjectsIcon({
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <rect width="8" height="8" x="3" y="3" rx="1.5" />
-      <rect width="8" height="8" x="13" y="3" rx="1.5" />
-      <rect width="8" height="8" x="3" y="13" rx="1.5" />
-      <rect width="8" height="8" x="13" y="13" rx="1.5" />
+      <rect width="18" height="18" x="3" y="3" rx="2" />
+      <path d="M3 12h18" />
+      <path d="M12 3v18" />
     </svg>
   );
 }
@@ -286,8 +285,9 @@ export function NavExperienceIcon({
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <circle cx="12" cy="12" r="9" />
-      <path d="M12 7v5l3 3" />
+      <rect width="18" height="18" x="3" y="3" rx="2" />
+      <path d="m8 9 3 3-3 3" />
+      <path d="M13 15h3" />
     </svg>
   );
 }
@@ -309,7 +309,8 @@ export function NavContactIcon({
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+      <path d="m22 2-7 20-4-9-9-4Z" />
+      <path d="M22 2 11 13" />
     </svg>
   );
 }
